@@ -1,22 +1,25 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-function SignUpButton() {
-  return <ButtonStyled type="submit">Create new Account</ButtonStyled>;
+function TryButton(props) {
+  return (
+    <ButtonStyled onClick={props.handleSignUp}>Try Kolrs for free</ButtonStyled>
+  );
 }
 
-export default SignUpButton;
+export default TryButton;
 
 const ButtonStyled = styled.button`
   background: #5120a9;
-  width: 100%;
+  padding: 1rem 2.5rem;
   height: 60px;
   color: #fff;
-  font-size: 1em;
+  font-size: 1.125em;
   border: none;
   outline: none;
-  border-radius: 3px;
+  border-radius: 5px;
   cursor: pointer;
+  align-self: flex-start;
   &:hover {
     background: #3b187b;
   }
