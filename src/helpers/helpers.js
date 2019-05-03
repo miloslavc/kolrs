@@ -8,3 +8,8 @@ export function textColor(color) {
   hsl.l = (hsl.l + 0.5) % 1; // Luminocity
   return "hsl(" + hsl.h * 360 + "," + hsl.s * 100 + "%," + hsl.l * 100 + "%)";
 }
+
+//Capitalize First Letter
+export function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}

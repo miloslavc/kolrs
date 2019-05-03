@@ -22,8 +22,10 @@ function SelectedPalette(props) {
         },
         function(doc) {
           setPalette(doc.data());
-          setUpdate(true);
-          setNumberOfColors(doc.data().colors.length);
+          if (doc.data().colors) {
+            setUpdate(true);
+            setNumberOfColors(doc.data().colors.length);
+          }
         }
       );
   }, [props.paletteId, props.user.uid]);
@@ -50,6 +52,11 @@ function SelectedPalette(props) {
 export default SelectedPalette;
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  width: 90%;
+  margin: 2em auto;
+  grid-auto-flow: row;
+  grid-gap: 2em;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: 450px;
 `;

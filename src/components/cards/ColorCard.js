@@ -4,9 +4,11 @@ import { db, firebase } from "../../firebase";
 import tinycolor from "tinycolor2";
 import { textColor } from "../../helpers/helpers";
 import { Redirect } from "@reach/router";
+import DeleteCardButton from "../buttons/DeleteCardButton";
 
 function ColorCard(props) {
   const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [showButton, setShowButton] = useState(false);
 
   //delete color or palette
   const handleDelete = () => {
@@ -33,11 +35,16 @@ function ColorCard(props) {
   return shouldRedirect ? (
     <Redirect to="/" />
   ) : (
-    <Card color={props.color} textColor={textColor(props.color)}>
+    <Card
+      color={props.color}
+      textColor={textColor(props.color)}
+      onMouseEnter={() => setShowButton(true)}
+      onMouseLeave={() => setShowButton(false)}
+    >
       <h1>{props.color}</h1>
       <h1>{rgb}</h1>
       <h1>{hsl}</h1>
-      <button onClick={handleDelete}>Delete</button>
+      {showButton && <DeleteCardButton handleDelete={handleDelete} />}
     </Card>
   );
 }
@@ -47,5 +54,9 @@ export default ColorCard;
 const Card = styled.div`
   background: ${props => props.color};
   color: ${props => props.textColor};
+  filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
   text-decoration: none;
+  position: relative;
+  padding: 1em;
+  border-radius: 5px;
 `;

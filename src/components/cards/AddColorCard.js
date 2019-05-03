@@ -35,7 +35,6 @@ function AddColorCard(props) {
           Add a color
         </h1>
       </ButtonWrapper>
-
       <PickerWrapper top={move ? "0" : "-100%"}>
         <MyPicker
           color={color}
@@ -52,19 +51,18 @@ function AddColorCard(props) {
 export default AddColorCard;
 
 const Wrapper = styled.div`
-  width: 200px;
-  height: 300px;
-  margin: 1em;
+  width: 100%;
+  height: 100%;
   background: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  box-sizing: border-box;
-  border: 1px solid black;
   overflow: hidden;
-  position: relative;
+  padding: 1em;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #666;
 `;
 
 const ButtonWrapper = styled.div`
@@ -89,4 +87,6 @@ const PickerWrapper = styled.div`
   height: 100%;
   width: 100%;
   top: ${props => props.top};
+  padding: 1em;
+  background: #fff;
 `;

@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { db } from "../../firebase";
 import { Link } from "@reach/router";
-import { textColor } from "../../helpers/helpers";
+import tinycolor from "tinycolor2";
+import ShowDeleteCardButton from "../buttons/ShowDeleteCardButton";
 
 function PaletteCards(props) {
+  const [showButton, setShowButton] = useState(false);
+  const color = tinycolor(props.palette.colors[0]);
+
   const handleDelete = () => {
     const data = db
       .collection("users")
@@ -15,31 +19,59 @@ function PaletteCards(props) {
   };
 
   return (
-    <Wrapper>
+    <Wrapper
+      onMouseEnter={() => setShowButton(true)}
+      onMouseLeave={() => setShowButton(false)}
+    >
       <Link to={`/${props.palette.id}`}>
         <PaletteCardStyled
           color={props.palette.colors ? props.palette.colors[0] : "#fff"}
-          textColor={textColor(props.palette.colors[0])}
+          textColor={color.isDark() ? "#fff" : "#141414"}
         >
           <h1>{props.palette.name}</h1>
+          <p>{props.index + 1}</p>
         </PaletteCardStyled>
       </Link>
-      <button onClick={handleDelete}>Delete</button>
+      {showButton && (
+        <ShowDeleteCardButton
+          color={color.isDark() ? "#fff" : "#141414"}
+          textColor={props.palette.colors[0]}
+          handleDelete={handleDelete}
+        />
+      )}
     </Wrapper>
   );
 }
 
 export default PaletteCards;
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  position: relative;
+`;
 
 const PaletteCardStyled = styled.div`
-  width: 200px;
-  height: 300px;
+  width: 100%;
+  height: 100%;
   background: ${props => props.color};
   color: ${props => props.textColor};
   text-decoration: none;
-  button {
-    z-index: 999;
+  padding: 1.5em;
+  border-radius: 5px;
+  filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
+  position: relative;
+  h1 {
+    font-size: 2.5em;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      width: 50px;
+      border-top: 3px solid ${props => props.textColor};
+    }
+  }
+  p {
+    position: absolute;
+    bottom: 1.5em;
+    right: 1.5em;
   }
 `;

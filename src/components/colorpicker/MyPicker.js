@@ -7,6 +7,7 @@ import {
   Saturation
 } from "react-color/lib/components/common";
 import color from "react-color/lib/helpers/color";
+import { textColor } from "../../helpers/helpers";
 
 export const MyPicker = ({ hex, hsl, hsv, onChange, handleUpdate }) => {
   const handleChange = (hexCode, e) => {
@@ -22,23 +23,29 @@ export const MyPicker = ({ hex, hsl, hsv, onChange, handleUpdate }) => {
 
   const styles = {
     hue: {
-      height: 15,
+      height: 20,
       position: "relative",
       marginBottom: 30,
-      width: "100%"
+      width: "100%",
+      borderRadius: "3px"
     },
     saturation: {
-      height: "200px",
+      height: "250px",
       position: "relative",
-      width: "100%"
+      width: "100%",
+      marginBottom: 30,
+      borderRadius: "3px"
     },
     input: {
-      height: 34,
+      height: 60,
       border: `2px solid ${hex}`,
       width: "100%",
       textAlign: "center",
       outline: "none",
-      background: `${hex}`
+      borderRadius: "3px",
+      background: `${hex}`,
+      fontSize: "1.2em",
+      color: `${textColor(hex)}`
     }
   };
 
@@ -53,7 +60,7 @@ export const MyPicker = ({ hex, hsl, hsv, onChange, handleUpdate }) => {
         />
       </div>
       <div style={styles.hue}>
-        <Hue hsl={hsl} onChange={onChange} pointer={MyPointer} />
+        <Hue hsl={hsl} onChange={onChange} pointer={MyHuePointer} />
       </div>
       <InputWrapper>
         <EditableInput
@@ -84,6 +91,7 @@ const InputWrapper = styled.div`
 
   div {
     width: 50%;
+    margin: 0.5em;
   }
 `;
 
@@ -107,12 +115,27 @@ const MyPointer = () => {
     <div
       style={{
         transform: "translate(-50%, -50%)",
-        height: "12px",
-        width: "12px",
-        border: "2px solid black",
+        height: "18px",
+        width: "18px",
+        border: "2px solid #fff",
         borderRadius: "50%",
         cursor: "pointer",
-        boxShadow: "inset 0 0 0 2px #fff"
+        filter: "drop-shadow(0 0 5px #333)"
+      }}
+    />
+  );
+};
+//custom pointer
+const MyHuePointer = () => {
+  return (
+    <div
+      style={{
+        height: "18px",
+        width: "18px",
+        border: "3px solid #fff",
+        borderRadius: "50%",
+        cursor: "pointer",
+        filter: "drop-shadow(0 0 5px #333)"
       }}
     />
   );
