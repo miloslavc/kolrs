@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { db, firebase } from "./firebase";
+import { db, firebase } from "../firebase";
 
 export default function useAuth() {
   const [user, setUser] = useState(null);
