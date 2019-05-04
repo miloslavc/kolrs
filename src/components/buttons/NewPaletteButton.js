@@ -14,22 +14,21 @@ export default NewPaletteButton;
 
 const Button = styled.div`
   a {
+    color: #666;
     border: none;
+    border-radius: 5px;
     outline: none;
     font-size: 1em;
-    background: #5120a9;
-    padding: 0.625em 2em;
+    padding: 0.5rem 1rem;
     user-select: none;
     cursor: pointer;
-    color: #fff;
-    border-radius: 5px;
     font-weight: 600;
-    margin-right: 1em;
     &:hover {
-      background: #3b187b;
+      color: #000;
+      /* background: #3b187b; */
     }
-    &:visited {
-      color: #fff;
-    }
+    /* &:visited {
+      color: #141414;
+    } */
   }
 `;

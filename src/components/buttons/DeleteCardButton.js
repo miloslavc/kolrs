@@ -28,8 +28,8 @@ function DeleteCardButton(props) {
             </g>
             <path
               className="b"
-              d="M6.25,6.25,0,12.5,6.25,6.25,0,0,6.25,6.25,12.5,0,6.25,6.25,12.5,12.5Z"
-              transform="translate(4319 -5024)"
+              d="M5,5,0,10,5,5,0,0,5,5l5-5L5,5l5,5Z"
+              transform="translate(4320.5 -5022.5)"
             />
           </g>
         </svg>
@@ -53,8 +53,8 @@ function DeleteCardButton(props) {
             </g>
             <path
               className="b"
-              d="M6.25,6.25,0,12.5,6.25,6.25,0,0,6.25,6.25,12.5,0,6.25,6.25,12.5,12.5Z"
-              transform="translate(4319 -5024)"
+              d="M5,5,0,10,5,5,0,0,5,5l5-5L5,5l5,5Z"
+              transform="translate(4320.5 -5022.5)"
             />
           </g>
         </svg>

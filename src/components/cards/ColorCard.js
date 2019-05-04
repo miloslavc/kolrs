@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { db, firebase } from "../../firebase";
 import tinycolor from "tinycolor2";
@@ -28,6 +28,12 @@ function ColorCard(props) {
       setShouldRedirect(true);
     }
   };
+
+  useEffect(() => {
+    if (copied === true) {
+      setTimeout(() => setCopied(false), 1800);
+    }
+  }, [copied]);
 
   //color converter
   const rgb = tinycolor(props.color).toRgbString();
@@ -61,6 +67,14 @@ function ColorCard(props) {
           handleDelete={handleDelete}
         />
       )}
+      {copied && (
+        <Copy
+          background={color.isDark() ? "#fff" : "#141414"}
+          color={props.color}
+        >
+          Copied
+        </Copy>
+      )}
     </Card>
   );
 }
@@ -76,8 +90,9 @@ const Card = styled.div`
   filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
   p {
     position: absolute;
-    bottom: 1.5em;
-    right: 2em;
+    font-size: 1.125em;
+    bottom: 1.5rem;
+    right: 2rem;
   }
 `;
 
@@ -104,4 +119,16 @@ const HslText = styled.h1`
   cursor: pointer;
   font-size: 1.25em;
   display: inline-block;
+`;
+
+const Copy = styled.h1`
+  cursor: pointer;
+  font-size: 1.5em;
+  display: inline-block;
+  background: ${props => props.background};
+  border-radius: 3px;
+  color: ${props => props.color};
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
 `;

@@ -60,24 +60,22 @@ const Wrapper = styled.div`
   justify-content: center;
   position: relative;
   overflow: hidden;
-  padding: 1em;
+  padding: 1.5em;
   border-radius: 5px;
-  box-shadow: 0 0 5px #666;
+  filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
 `;
 
 const ButtonWrapper = styled.div`
-  border: 1px dashed black;
-  padding: 10px;
-  border-radius: 10px;
   position: absolute;
   top: ${props => props.top};
   h1 {
+    text-transform: capitalize;
     font-size: 1.5em;
-    opacity: 0.5;
     height: 100%;
+    color: #666;
     &:hover {
       cursor: pointer;
-      opacity: 1;
+      color: #141414;
     }
   }
 `;
@@ -87,6 +85,6 @@ const PickerWrapper = styled.div`
   height: 100%;
   width: 100%;
   top: ${props => props.top};
-  padding: 1em;
+  padding: 1.5em;
   background: #fff;
 `;

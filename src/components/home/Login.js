@@ -82,7 +82,7 @@ const Wrapper = styled.div`
 const Modal = styled.div`
   background: #fff;
   z-index: 10;
-  padding: 1em;
+  padding: 2em;
   max-width: 400px;
   width: 100%;
 `;

@@ -4,6 +4,7 @@ import Nav from "../components/home/Nav";
 import Login from "../components/home/Login";
 import SignUp from "../components/home/SignUp";
 import HeroSection from "../components/home/HeroSection";
+import Footer from "../pages/Footer";
 function Home() {
   const [toggleSignUp, setToggleSignUp] = useState(false);
   const [toggleLogin, setToggleLogin] = useState(false);
@@ -24,6 +25,7 @@ function Home() {
       <main>
         <HeroSection handleSignUp={handleSignUp} />
       </main>
+      <Footer />
     </Wrapper>
   );
 }

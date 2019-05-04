@@ -20,7 +20,7 @@ function Palettes(props) {
 
 export default Palettes;
 
-const Wrapper = styled.div`
+const Wrapper = styled.main`
   display: grid;
   width: 90%;
   margin: 2em auto;

@@ -1,13 +1,11 @@
 import React from "react";
-import { Link } from "@reach/router";
-import logo from "../images/logo/logo40x40.svg";
 import styled from "@emotion/styled";
+import Logo from "../buttons/Logo";
+
 function Nav(props) {
   return (
     <HeaderStyled>
-      <Link to="/">
-        <img src={logo} alt="kolrs" />
-      </Link>
+      <Logo />
       <SignIn onClick={props.login}>Sign In </SignIn>
       <SignUp onClick={props.signUp}>Sign Up</SignUp>
     </HeaderStyled>
@@ -21,15 +19,6 @@ const HeaderStyled = styled.header`
   margin: 0 auto;
   display: flex;
   padding: 1em 0;
-
-  a {
-    display: flex;
-    align-items: center;
-    margin-right: auto;
-    img {
-      max-height: 40px;
-    }
-  }
 `;
 
 const SignIn = styled.button`
@@ -37,12 +26,13 @@ const SignIn = styled.button`
   outline: none;
   font-size: 1em;
   background: none;
-  padding: 0 1em;
+  padding: 0 1.25rem;
   user-select: none;
   cursor: pointer;
   font-weight: 600;
+  color: #666;
   &:hover {
-    color: #5120a9;
+    color: #141414;
   }
 `;
 
@@ -51,7 +41,7 @@ const SignUp = styled.button`
   outline: none;
   font-size: 1em;
   background: #5120a9;
-  padding: 0.625em 2em;
+  padding: 0.5rem 2rem;
   user-select: none;
   cursor: pointer;
   color: #fff;

@@ -7,7 +7,7 @@ import {
   Saturation
 } from "react-color/lib/components/common";
 import color from "react-color/lib/helpers/color";
-import { textColor } from "../../helpers/helpers";
+import tinycolor from "tinycolor2";
 
 export const MyPicker = ({ hex, hsl, hsv, onChange, handleUpdate }) => {
   const handleChange = (hexCode, e) => {
@@ -20,6 +20,8 @@ export const MyPicker = ({ hex, hsl, hsv, onChange, handleUpdate }) => {
         e
       );
   };
+
+  const textColor = tinycolor(hex);
 
   const styles = {
     hue: {
@@ -45,7 +47,7 @@ export const MyPicker = ({ hex, hsl, hsv, onChange, handleUpdate }) => {
       borderRadius: "3px",
       background: `${hex}`,
       fontSize: "1.2em",
-      color: `${textColor(hex)}`
+      color: `${textColor.isDark() ? "#fff" : "#141414"}`
     }
   };
 
@@ -72,7 +74,9 @@ export const MyPicker = ({ hex, hsl, hsv, onChange, handleUpdate }) => {
           width="100%"
           label={null}
         />
-        <StyledButton onClick={handleUpdate}>+ Save</StyledButton>
+        <StyledButton color={hex} onClick={handleUpdate}>
+          Save
+        </StyledButton>
       </InputWrapper>
     </Wrapper>
   );
@@ -92,20 +96,24 @@ const InputWrapper = styled.div`
   div {
     width: 50%;
     margin: 0.5em;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
   }
 `;
 
 const StyledButton = styled.button`
   width: 50%;
-  border: none;
+  border: 2px solid transparent;
+  border-radius: 3px;
   background: none;
   outline: none;
-  font-size: 1em;
-
+  font-size: 1.125em;
+  color: #141414;
+  margin: 0.5em;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
   &:hover {
-    color: blue;
-    font-weight: bold;
+    /* font-weight: bold; */
     cursor: pointer;
+    border: 2px solid ${props => props.color};
   }
 `;
 

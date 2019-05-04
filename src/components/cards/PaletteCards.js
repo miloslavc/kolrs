@@ -70,8 +70,9 @@ const PaletteCardStyled = styled.div`
     }
   }
   p {
+    font-size: 1.125em;
     position: absolute;
-    bottom: 1.5em;
-    right: 2em;
+    bottom: 1.5rem;
+    right: 2rem;
   }
 `;

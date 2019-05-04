@@ -22,6 +22,7 @@ function SelectedPalette(props) {
         },
         function(doc) {
           setPalette(doc.data());
+          console.log(doc.data());
           if (doc.data().colors) {
             setUpdate(true);
             setNumberOfColors(doc.data().colors.length);
@@ -32,6 +33,7 @@ function SelectedPalette(props) {
 
   return (
     <Wrapper>
+      {palette && <Title>{palette.name}</Title>}
       <AddColorCard user={props.user} paletteId={props.paletteId} />
       {update &&
         palette.colors.map((color, index) => (
@@ -60,4 +62,12 @@ const Wrapper = styled.div`
   grid-gap: 2em;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-auto-rows: 450px;
+`;
+
+const Title = styled.h1`
+  font-size: 1.5em;
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
 `;
