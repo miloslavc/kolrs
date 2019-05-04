@@ -55,23 +55,23 @@ const PaletteCardStyled = styled.div`
   background: ${props => props.color};
   color: ${props => props.textColor};
   text-decoration: none;
-  padding: 1.5em;
+  padding: 2.5em 1.5em;
   border-radius: 5px;
   filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
   position: relative;
   h1 {
     font-size: 2.5em;
-    position: relative;
     &::before {
       content: "";
       position: absolute;
       width: 50px;
       border-top: 3px solid ${props => props.textColor};
+      top: 2rem;
     }
   }
   p {
     position: absolute;
     bottom: 1.5em;
-    right: 1.5em;
+    right: 2em;
   }
 `;

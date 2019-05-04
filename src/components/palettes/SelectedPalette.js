@@ -34,13 +34,14 @@ function SelectedPalette(props) {
     <Wrapper>
       <AddColorCard user={props.user} paletteId={props.paletteId} />
       {update &&
-        palette.colors.map(color => (
+        palette.colors.map((color, index) => (
           <ColorCard
             key={color}
             color={color}
             user={props.user}
             id={props.paletteId}
             colorNumber={numberOfColors}
+            index={index}
           >
             {color}
           </ColorCard>

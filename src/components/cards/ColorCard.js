@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { db, firebase } from "../../firebase";
 import tinycolor from "tinycolor2";
-import { textColor } from "../../helpers/helpers";
 import { Redirect } from "@reach/router";
 import DeleteCardButton from "../buttons/DeleteCardButton";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 function ColorCard(props) {
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [showButton, setShowButton] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   //delete color or palette
   const handleDelete = () => {
@@ -31,20 +32,35 @@ function ColorCard(props) {
   //color converter
   const rgb = tinycolor(props.color).toRgbString();
   const hsl = tinycolor(props.color).toHslString();
+  const hex = props.color;
+  const color = tinycolor(props.color);
 
   return shouldRedirect ? (
     <Redirect to="/" />
   ) : (
     <Card
       color={props.color}
-      textColor={textColor(props.color)}
+      textColor={color.isDark() ? "#fff" : "#141414"}
       onMouseEnter={() => setShowButton(true)}
       onMouseLeave={() => setShowButton(false)}
     >
-      <h1>{props.color}</h1>
-      <h1>{rgb}</h1>
-      <h1>{hsl}</h1>
-      {showButton && <DeleteCardButton handleDelete={handleDelete} />}
+      <CopyToClipboard text={hex} onCopy={() => setCopied(true)}>
+        <HexText>{hex.toUpperCase()}</HexText>
+      </CopyToClipboard>
+      <CopyToClipboard text={rgb} onCopy={() => setCopied(true)}>
+        <RgbText>{rgb.toUpperCase()}</RgbText>
+      </CopyToClipboard>
+      <CopyToClipboard text={hsl} onCopy={() => setCopied(true)}>
+        <HslText>{hsl.toUpperCase()}</HslText>
+      </CopyToClipboard>
+      <p>{props.index + 1}</p>
+      {showButton && (
+        <DeleteCardButton
+          color={color.isDark() ? "#fff" : "#141414"}
+          iconColor={props.color}
+          handleDelete={handleDelete}
+        />
+      )}
     </Card>
   );
 }
@@ -54,9 +70,38 @@ export default ColorCard;
 const Card = styled.div`
   background: ${props => props.color};
   color: ${props => props.textColor};
-  filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
-  text-decoration: none;
   position: relative;
-  padding: 1em;
+  padding: 2.5em 1.5em;
   border-radius: 5px;
+  filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
+  p {
+    position: absolute;
+    bottom: 1.5em;
+    right: 2em;
+  }
+`;
+
+const HexText = styled.h1`
+  cursor: pointer;
+  font-size: 2.5em;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    border-top: 3px solid ${props => props.textColor};
+    top: 2rem;
+  }
+`;
+const RgbText = styled.h1`
+  cursor: pointer;
+  font-size: 1.75em;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+`;
+const HslText = styled.h1`
+  cursor: pointer;
+  font-size: 1.25em;
+  display: inline-block;
 `;
