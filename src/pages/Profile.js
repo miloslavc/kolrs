@@ -7,7 +7,6 @@ import AddPalette from "../components/palettes/AddPalette";
 import SelectedPalette from "../components/palettes/SelectedPalette";
 import NewPalette from "../components/palettes/NewPalette";
 import NotFound from "../pages/NotFound";
-import Footer from "../pages/Footer";
 
 function Profile(props) {
   const [palettes, setPalettes] = useState([]);
@@ -46,7 +45,6 @@ function Profile(props) {
         />
         <NotFound default />
       </Router>
-      <Footer />
     </main>
   );
 }

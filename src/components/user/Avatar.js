@@ -29,6 +29,9 @@ const User = styled.div`
     text-align: center;
   }
   img {
-    height: 100%;
+    height: 70%;
+  }
+  @media (max-width: 900px) {
+    display: none;
   }
 `;

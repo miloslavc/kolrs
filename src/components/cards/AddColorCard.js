@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "@emotion/styled";
 import { db, firebase } from "../../firebase";
 import MyPicker from "../colorpicker/MyPicker";
+import tinycolor from "tinycolor2";
 
 function AddColorCard(props) {
   const [color, setColor] = useState("#fff");
   const [move, setMove] = useState(false);
+  const [saved, setSaved] = useState(false);
 
+  //save selected color in state
   const handleChange = color => {
     setColor(color.hex);
   };
@@ -14,6 +17,7 @@ function AddColorCard(props) {
   //upload new item to the doc
   const handleUpdate = () => {
     const selectedColor = color;
+    setSaved(true);
     const data = db
       .collection("users")
       .doc(`${props.user.uid}`)
@@ -24,16 +28,28 @@ function AddColorCard(props) {
     });
   };
 
+  //show confirmation when color is saved
+  useEffect(() => {
+    if (saved === true) {
+      setTimeout(() => setSaved(false), 1800);
+      console.log(saved);
+    }
+  }, [saved]);
+
+  // check if the color is light or dark
+  const textColor = tinycolor(color);
+
   return (
     <Wrapper>
       <ButtonWrapper top={move ? "100%" : null}>
-        <h1
+        <Title>{props.name}</Title>
+        <AddColor
           onClick={() => {
             setMove(!move);
           }}
         >
-          Add a color
-        </h1>
+          <h1>Add color</h1>
+        </AddColor>
       </ButtonWrapper>
       <PickerWrapper top={move ? "0" : "-100%"}>
         <MyPicker
@@ -43,6 +59,14 @@ function AddColorCard(props) {
           handleUpdate={handleUpdate}
           width="100%"
         />
+        {saved && (
+          <Saved
+            color={color}
+            background={textColor.isDark() ? "#fff" : "#141414"}
+          >
+            Saved!
+          </Saved>
+        )}
       </PickerWrapper>
     </Wrapper>
   );
@@ -56,11 +80,10 @@ const Wrapper = styled.div`
   background: #fff;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   position: relative;
   overflow: hidden;
-  padding: 1.5em;
   border-radius: 5px;
   filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
 `;
@@ -68,16 +91,9 @@ const Wrapper = styled.div`
 const ButtonWrapper = styled.div`
   position: absolute;
   top: ${props => props.top};
-  h1 {
-    text-transform: capitalize;
-    font-size: 1.5em;
-    height: 100%;
-    color: #666;
-    &:hover {
-      cursor: pointer;
-      color: #141414;
-    }
-  }
+  padding: 2.5em 1.5em;
+  width: 100%;
+  height: 100%;
 `;
 
 const PickerWrapper = styled.div`
@@ -87,4 +103,52 @@ const PickerWrapper = styled.div`
   top: ${props => props.top};
   padding: 1.5em;
   background: #fff;
+`;
+
+const Title = styled.h1`
+  cursor: pointer;
+  font-size: 2.5em;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  align-self: flex-start;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    border-top: 3px solid #141414;
+    top: 2rem;
+  }
+`;
+
+const AddColor = styled.div`
+  height: 100px;
+  width: 100px;
+  color: #fff;
+  background: #141414;
+  border-radius: 50%;
+  margin: 0;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  h1 {
+    font-size: 1.125em;
+  }
+`;
+
+const Saved = styled.h1`
+  cursor: pointer;
+  font-size: 2.5em;
+  display: inline-block;
+  background: ${props => props.background};
+  border-radius: 3px;
+  color: ${props => props.color};
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99;
 `;

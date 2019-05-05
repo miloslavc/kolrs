@@ -5,7 +5,7 @@ import Logo from "../buttons/Logo";
 function Nav(props) {
   return (
     <HeaderStyled>
-      <Logo />
+      <Logo color="#fff" />
       <SignIn onClick={props.login}>Sign In </SignIn>
       <SignUp onClick={props.signUp}>Sign Up</SignUp>
     </HeaderStyled>
@@ -32,7 +32,7 @@ const SignIn = styled.button`
   font-weight: 600;
   color: #666;
   &:hover {
-    color: #141414;
+    color: #fff;
   }
 `;
 

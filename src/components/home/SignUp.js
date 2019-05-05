@@ -16,8 +16,6 @@ function SignUp(props) {
       await firebase.auth().createUserWithEmailAndPassword(email, password);
     } catch (error) {
       setAuthError(error);
-      console.log(error.code);
-      console.log(error.message);
     }
   };
 
@@ -37,6 +35,8 @@ function SignUp(props) {
             value={email}
             type="text"
             placeholder="Email"
+            autoCapitalize="off"
+            autoCorrect="off"
             required
           />
           {authError
@@ -51,6 +51,8 @@ function SignUp(props) {
             value={password}
             type="password"
             placeholder="Password"
+            autoCapitalize="off"
+            autoCorrect="off"
             required
           />
           <SigUpButton />
@@ -69,7 +71,6 @@ const Wrapper = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,6 +87,10 @@ const Modal = styled.div`
   padding: 2em;
   max-width: 400px;
   width: 100%;
+  @media (max-width: 900px) {
+    width: 90%;
+    margin: 0 auto;
+  }
 `;
 
 const Dimmed = styled.div`

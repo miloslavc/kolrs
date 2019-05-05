@@ -35,4 +35,5 @@ export default Home;
 const Wrapper = styled.main`
   width: 100%;
   height: 100vh;
+  background: #000;
 `;

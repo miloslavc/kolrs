@@ -1,6 +1,7 @@
 import React from "react";
 import PaletteCards from "../cards/PaletteCards";
 import styled from "@emotion/styled";
+import NewPaletteButtonMobile from "../buttons/NewPaletteButtonMobile";
 
 function Palettes(props) {
   return (
@@ -14,6 +15,7 @@ function Palettes(props) {
           index={index}
         />
       ))}
+      <NewPaletteButtonMobile />
     </Wrapper>
   );
 }

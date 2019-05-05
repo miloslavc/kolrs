@@ -11,7 +11,7 @@ export default TryButton;
 
 const ButtonStyled = styled.button`
   background: #5120a9;
-  padding: 1rem 2.5rem;
+  padding: 1em 2.5em;
   height: 60px;
   color: #fff;
   font-size: 1.125em;

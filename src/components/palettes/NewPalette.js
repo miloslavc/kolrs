@@ -55,7 +55,7 @@ function NewPalette(props) {
               type="text"
               name="projectName"
               placeholder="Palette Name"
-              autocomplete="off"
+              autoComplete="off"
               required
             />
           </WrapperForm>
@@ -94,8 +94,10 @@ const Modal = styled.div`
   border-radius: 5px;
   padding: 0;
   overflow: hidden;
-  /* border: 1px solid #00e095; */
-  box-shadow: 0 10px 15px rgba(220, 220, 220, 0.8);
+  @media (max-width: 900px) {
+    width: 90%;
+    margin: 0 auto;
+  }
 `;
 
 const Dimmed = styled.div`
@@ -104,8 +106,7 @@ const Dimmed = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0);
-  /* background: #00e095; */
+  background: rgba(0, 0, 0, 0.3);
   z-index: -99;
 `;
 

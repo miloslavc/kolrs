@@ -3,11 +3,11 @@ import logo from "../images/logo/logo40x40.svg";
 import styled from "@emotion/styled";
 import { Link } from "@reach/router";
 
-function Logo() {
+function Logo(props) {
   return (
     <LogoWrapper>
       <Link to="/">
-        <LogoButton>
+        <LogoButton color={props.color}>
           <img src={logo} alt="Kolrs" />
           <p>beta</p>
         </LogoButton>
@@ -32,8 +32,7 @@ const LogoButton = styled.div`
   }
   p {
     font-size: 1.125em;
-    /* color: #ff4045; */
-    color: #141414;
+    color: ${props => props.color};
     font-weight: bold;
     margin-left: 0.2em;
   }

@@ -12,7 +12,7 @@ const handleSignOut = () => {
 function Nav(props) {
   return (
     <HeaderStyled>
-      <Logo />
+      <Logo color="#141414" />
       <NewPaletteButton />
       <Avatar user={props.user} />
       <SignOutButton handleSignOut={handleSignOut} />

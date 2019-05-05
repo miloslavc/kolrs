@@ -33,8 +33,8 @@ function Login(props) {
           <input
             onChange={e => setEmail(e.target.value)}
             value={email}
-            autocapitalize="off"
-            autocorrect="off"
+            autoCapitalize="off"
+            autoCorrect="off"
             type="text"
             placeholder="Email"
             required
@@ -47,8 +47,8 @@ function Login(props) {
           <input
             onChange={e => setPassword(e.target.value)}
             value={password}
-            autocapitalize="off"
-            autocorrect="off"
+            autoCapitalize="off"
+            autoCorrect="off"
             type="password"
             placeholder="Password"
             required
@@ -85,6 +85,10 @@ const Modal = styled.div`
   padding: 2em;
   max-width: 400px;
   width: 100%;
+  @media (max-width: 900px) {
+    width: 90%;
+    margin: 0 auto;
+  }
 `;
 
 const Dimmed = styled.div`

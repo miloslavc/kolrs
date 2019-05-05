@@ -25,10 +25,9 @@ const Button = styled.div`
     font-weight: 600;
     &:hover {
       color: #000;
-      /* background: #3b187b; */
     }
-    /* &:visited {
-      color: #141414;
-    } */
+  }
+  @media (max-width: 900px) {
+    display: none;
   }
 `;
