@@ -29,7 +29,10 @@ function PaletteCards(props) {
         color={props.palette.colors ? props.palette.colors[0] : "#fff"}
         textColor={color.isDark() ? "#fff" : "#141414"}
       >
-        <LinkWrapper color={props.palette.colors[0]}>
+        <LinkWrapper
+          color={props.palette.colors[0]}
+          textColor={color.isDark() ? "#fff" : "#141414"}
+        >
           <Link to={`/${props.palette.id}`} />
         </LinkWrapper>
         <Title>{props.palette.name}</Title>
@@ -103,24 +106,9 @@ const LinkWrapper = styled.div`
       left: 50%;
       border-radius: 50%;
       transform: translate(-50%, -50%);
-      filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.3));
-      animation-duration: 1s;
-      animation-name: open;
-      animation-iteration-count: infinite;
-      animation-timing-function: cubic-bezier(0.03, 0.45, 0.58, 0.27);
-      animation-direction: alternate;
-      @keyframes open {
-        from {
-          width: 50px;
-          height: 50px;
-          /* filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.3)); */
-        }
+      border:2px solid ${props => props.textColor};
 
-        to {
-          width: 100px;
-          height: 100px;
-          /* filter: drop-shadow(0px 5px 10px rgba(0, 0, 0, 0.3)); */
-        }
+
       }
     }
   }

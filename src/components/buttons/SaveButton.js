@@ -8,17 +8,17 @@ function SaveButton() {
 export default SaveButton;
 
 const ButtonStyled = styled.button`
-  background: #00e095;
-  width: 100%;
-  height: 60px;
-  color: #fff;
-  font-size: 1em;
+  background: #141414;
+  width: 100px;
+  height: 100px;
+  color: #00e095;
+  font-size: 1.125em;
   border: none;
-  border-radius: 3px;
+  border-radius: 50%;
   outline: none;
   justify-self: flex-end;
   cursor: pointer;
   &:hover {
-    opacity: 0.8;
+    filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.2));
   }
 `;

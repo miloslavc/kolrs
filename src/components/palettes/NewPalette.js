@@ -20,11 +20,9 @@ function NewPalette(props) {
     e.preventDefault();
     const name = capitalizeFirstLetter(paletteNameRef.current.value);
     const id = name.toLowerCase().replace(/ +/g, "");
-    // const color = colorRef.current.value;
     const palette = {
       name,
       id,
-      // colors: [color],
       createdAt: new Date()
     };
     db.collection("users")
@@ -49,16 +47,14 @@ function NewPalette(props) {
       <Modal>
         <Heading>Create new palette</Heading>
         <FormStyled onSubmit={handleSubmit}>
-          <WrapperForm>
-            <input
-              ref={paletteNameRef}
-              type="text"
-              name="projectName"
-              placeholder="Palette Name"
-              autoComplete="off"
-              required
-            />
-          </WrapperForm>
+          <input
+            ref={paletteNameRef}
+            type="text"
+            name="projectName"
+            placeholder="Palette Name"
+            autoComplete="off"
+            required
+          />
           <SaveButton />
         </FormStyled>
       </Modal>
@@ -82,18 +78,20 @@ const Wrapper = styled.section`
   justify-content: center;
 `;
 const Modal = styled.div`
-  background: #fff;
+  background: #00e095;
+  position: relative;
   z-index: 10;
-  padding: 1em;
   max-width: 400px;
-  height: 450px;
+  height: 560px;
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 5px;
-  padding: 0;
+  padding: 2.5em 1.5em;
   overflow: hidden;
+  filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
+
   @media (max-width: 900px) {
     width: 90%;
     margin: 0 auto;
@@ -106,51 +104,62 @@ const Dimmed = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0);
   z-index: -99;
 `;
 
-const WrapperForm = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-`;
 const FormStyled = styled.form`
-  padding: 1em;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 85%;
   align-items: center;
-  justify-content: space-between;
-
+  justify-content: flex-end;
   width: 100%;
 
   input {
     height: 60px;
-    font-size: 1.5em;
-    color: #666;
-    padding-left: 0.8em;
-    margin-top: auto;
-    margin-bottom: auto;
-    border-radius: 5px;
-    border: 1px solid #d4d4d4;
+    font-size: 2em;
+    color: #141414;
+    padding-left: 0.1em;
+    font-weight: bold;
+
+    border: none;
+    border-bottom: 2px solid #141414;
     outline: none;
     width: 100%;
-    margin: 0.8rem;
-
+    background: #00e095;
+    margin-bottom: 3.2em;
+    border-bottom-width: 80%;
     &:focus {
-      border: 1px solid #00e095;
+      border-bottom-width: 100%;
+    }
+
+    /* placeholder css */
+    ::-webkit-input-placeholder {
+      color: #141414;
+      opacity: 0.5;
+    }
+    ::-moz-placeholder {
+      color: #141414;
+      opacity: 0.5;
+    }
+    :-ms-input-placeholder {
+      color: #141414;
+    }
+    :-moz-placeholder {
+      color: #141414;
     }
   }
 `;
 
 const Heading = styled.h1`
-  width: 100%;
-  background: #00e095;
-  text-align: center;
-  padding: 1em;
-  color: #fff;
+  font-size: 2.5em;
+  display: inline-block;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 50px;
+    border-top: 3px solid ${props => props.textColor};
+    top: 2rem;
+  }
 `;
