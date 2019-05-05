@@ -32,7 +32,6 @@ function AddColorCard(props) {
   useEffect(() => {
     if (saved === true) {
       setTimeout(() => setSaved(false), 1800);
-      console.log(saved);
     }
   }, [saved]);
 
