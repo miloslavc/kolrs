@@ -8,7 +8,6 @@ import ColorDots from "../modals/ColorDots";
 
 function PaletteCards(props) {
   const [showButton, setShowButton] = useState(false);
-  const color = tinycolor(props.palette.colors[0]);
 
   const handleDelete = () => {
     const data = db
@@ -18,6 +17,8 @@ function PaletteCards(props) {
       .doc(`${props.id}`);
     data.delete();
   };
+
+  const color = tinycolor(props.palette.colors[0]);
 
   return (
     <Wrapper

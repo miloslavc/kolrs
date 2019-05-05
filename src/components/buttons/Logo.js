@@ -33,7 +33,7 @@ const LogoButton = styled.div`
   p {
     font-size: 1.125em;
     color: ${props => props.color};
-    font-weight: bold;
+    font-weight: 500;
     margin-left: 0.2em;
   }
 `;
