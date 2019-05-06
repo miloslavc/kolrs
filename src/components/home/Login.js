@@ -85,6 +85,7 @@ const Modal = styled.div`
   padding: 2em;
   max-width: 400px;
   width: 100%;
+  z-index: 98;
   @media (max-width: 900px) {
     width: 90%;
     margin: 0 auto;

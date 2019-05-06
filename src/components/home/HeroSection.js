@@ -23,14 +23,17 @@ const SectionStyled = styled.section`
   display: grid;
   margin-left: auto;
   margin-right: auto;
-  grid-template-columns: 1fr 1.7fr;
-  max-width: 1200px;
+  grid-template-columns: 1fr 1.8fr;
+  max-width: 1250px;
+  grid-gap: 3em;
   @media (max-width: 1300px) {
     width: 90%;
     margin: 0 auto;
+    grid-gap: 2em;
   }
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
+    grid-gap: 0.5em;
   }
 `;
 
