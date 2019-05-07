@@ -121,8 +121,7 @@ const FormStyled = styled.form`
     font-size: 2em;
     color: #141414;
     padding-left: 0.1em;
-    font-weight: bold;
-
+    font-weight: 400;
     border: none;
     border-bottom: 2px solid #141414;
     outline: none;
@@ -155,6 +154,8 @@ const FormStyled = styled.form`
 const Heading = styled.h1`
   font-size: 2.5em;
   display: inline-block;
+  font-weight: 700;
+
   &::before {
     content: "";
     position: absolute;

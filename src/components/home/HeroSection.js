@@ -7,8 +7,8 @@ function HeroSection(props) {
   return (
     <SectionStyled>
       <HeroText>
-        <h1>A better way to create and save you color palettes.</h1>
-        <p>Create, collect, and organize colors all in one place..</p>
+        <h1>A better way to create and save your color palettes.</h1>
+        <p>Create, collect, and organize colors all in one place.</p>
         <TryButton handleSignUp={props.handleSignUp} />
       </HeroText>
       <Video />
@@ -48,6 +48,7 @@ const HeroText = styled.div`
     margin-bottom: 2.5rem;
     line-height: 1.1;
     color: #fff;
+    font-weight: 500;
   }
   p {
     width: 100%;

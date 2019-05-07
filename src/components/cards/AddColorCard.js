@@ -110,6 +110,8 @@ const Title = styled.h1`
   margin-bottom: 1.5rem;
   display: inline-block;
   align-self: flex-start;
+  font-weight: 700;
+
   &::before {
     content: "";
     position: absolute;
@@ -141,6 +143,7 @@ const AddColor = styled.div`
 const Saved = styled.h1`
   cursor: pointer;
   font-size: 2.5em;
+  font-weight: 700;
   display: inline-block;
   background: ${props => props.background};
   border-radius: 3px;

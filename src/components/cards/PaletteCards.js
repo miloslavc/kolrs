@@ -73,6 +73,7 @@ const PaletteCardStyled = styled.div`
 
 const Title = styled.h1`
   font-size: 2.5em;
+  font-weight: 500;
   &::before {
     content: "";
     position: absolute;

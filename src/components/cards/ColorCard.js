@@ -101,6 +101,7 @@ const HexText = styled.h1`
   font-size: 2.5em;
   margin-bottom: 1.5rem;
   display: inline-block;
+  font-weight: 500;
   &::before {
     content: "";
     position: absolute;
@@ -114,11 +115,13 @@ const RgbText = styled.h1`
   font-size: 1.75em;
   margin-bottom: 1.5rem;
   display: inline-block;
+  font-weight: 500;
 `;
 const HslText = styled.h1`
   cursor: pointer;
   font-size: 1.25em;
   display: inline-block;
+  font-weight: 500;
 `;
 
 const Copy = styled.h1`
@@ -131,4 +134,5 @@ const Copy = styled.h1`
   position: absolute;
   bottom: 1.5rem;
   left: 1.5rem;
+  font-weight: 500;
 `;
