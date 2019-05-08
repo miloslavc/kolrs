@@ -8,7 +8,7 @@ function Footer() {
       <span role="img" aria-label="Heart">
         ♥
       </span>
-      by <a href="http://www.oblik.io">Miloslav Cvetkovic</a>
+      by <a href="http://miloslavc.com">Miloslav Cvetkovic</a>
     </FooterStyled>
   );
 }
