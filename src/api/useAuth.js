@@ -2,7 +2,10 @@ import { useState, useEffect } from "react";
 import { db, firebase } from "../firebase";
 
 export default function useAuth() {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
+  const [userRequest, setUserRequest] = useState({
+    loading: true,
+    user: useState(JSON.parse(localStorage.getItem("user")))
+  });
 
   useEffect(() => {
     return firebase.auth().onAuthStateChanged(appUser => {
@@ -14,16 +17,20 @@ export default function useAuth() {
           email: appUser.email
         };
         localStorage.setItem("user", JSON.stringify(user));
-        setUser(user);
-
+        setUserRequest({
+          loading: false,
+          user: user
+        });
         db.collection("users")
           .doc(user.uid)
           .set(user, { merge: true });
       } else {
         localStorage.removeItem("user");
-        setUser(null);
+        setUserRequest({
+          user: null
+        });
       }
     });
   }, []);
-  return user;
+  return userRequest;
 }

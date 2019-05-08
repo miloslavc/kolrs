@@ -20,9 +20,11 @@ function NewPalette(props) {
     e.preventDefault();
     const name = capitalizeFirstLetter(paletteNameRef.current.value);
     const id = name.toLowerCase().replace(/ +/g, "");
+    const colors = [];
     const palette = {
       name,
       id,
+      colors,
       createdAt: new Date()
     };
     db.collection("users")
@@ -41,7 +43,7 @@ function NewPalette(props) {
   }, [id, shouldRedirect]);
 
   return shouldRedirect ? (
-    <Redirect from="/new" to={`/${id}`} noThrow />
+    <Redirect from="/new" to={`palette/${id}`} noThrow />
   ) : (
     <Wrapper>
       <Modal>

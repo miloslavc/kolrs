@@ -33,7 +33,11 @@ function ColorCard(props) {
     if (copied === true) {
       setTimeout(() => setCopied(false), 1800);
     }
-  }, [copied]);
+  }, [copied, props.colorNumber]);
+
+  if (props.colorNumber > 0) {
+    console.log("Its zero");
+  }
 
   //color converter
   const rgb = tinycolor(props.color).toRgbString();

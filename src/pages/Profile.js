@@ -36,11 +36,16 @@ function Profile(props) {
       <Nav user={props.user} />
       <Router>
         {palettes.length ? (
-          <Palettes path="/" palettes={palettes} user={props.user} />
+          <Palettes
+            path="/"
+            palettes={palettes}
+            color={palettes.colors}
+            user={props.user}
+          />
         ) : (
           <AddPalette path="/" />
         )}
-        <SelectedPalette path="/:paletteId" user={props.user} />
+        <SelectedPalette path="palette/:paletteId" user={props.user} />
         <NewPalette
           path="/new"
           palettes={palettes}

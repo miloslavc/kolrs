@@ -26,14 +26,18 @@ function PaletteCards(props) {
       onMouseLeave={() => setShowButton(false)}
     >
       <PaletteCardStyled
-        color={props.palette.colors ? props.palette.colors[0] : "#fff"}
+        color={
+          props.palette.colors.length !== 0
+            ? props.palette.colors[0]
+            : "#141414"
+        }
         textColor={color.isDark() ? "#fff" : "#141414"}
       >
         <LinkWrapper
           color={props.palette.colors[0]}
           textColor={color.isDark() ? "#fff" : "#141414"}
         >
-          <Link to={`/${props.palette.id}`} />
+          <Link to={`palette/${props.palette.id}`} />
         </LinkWrapper>
         <Title>{props.palette.name}</Title>
         <Number>{props.index + 1}</Number>
@@ -107,10 +111,7 @@ const LinkWrapper = styled.div`
       left: 50%;
       border-radius: 50%;
       transform: translate(-50%, -50%);
-      border:2px solid ${props => props.textColor};
-
-
-      }
+      border: 2px solid ${props => props.textColor};
     }
   }
 `;
