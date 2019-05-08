@@ -8,7 +8,10 @@ function Footer() {
       <span role="img" aria-label="Heart">
         ♥
       </span>
-      by <a href="http://miloslavc.com">Miloslav Cvetkovic</a>
+      by{" "}
+      <a target="_blank" rel="noopener noreferrer" href="http://miloslavc.com">
+        Miloslav Cvetkovic
+      </a>
     </FooterStyled>
   );
 }

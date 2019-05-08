@@ -84,6 +84,7 @@ const Wrapper = styled.div`
   position: relative;
   overflow: hidden;
   border-radius: 5px;
+  -webkit-filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
   filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
 `;
 
@@ -130,6 +131,8 @@ const AddColor = styled.div`
   margin: 0;
   cursor: pointer;
   display: grid;
+  align-items: center;
+  justify-items: center;
   place-items: center;
   position: absolute;
   left: 50%;

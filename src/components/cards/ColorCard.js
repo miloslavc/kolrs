@@ -57,9 +57,12 @@ function ColorCard(props) {
       <CopyToClipboard text={hex} onCopy={() => setCopied(true)}>
         <HexText>{hex.toUpperCase()}</HexText>
       </CopyToClipboard>
+      <br />
       <CopyToClipboard text={rgb} onCopy={() => setCopied(true)}>
         <RgbText>{rgb.toUpperCase()}</RgbText>
       </CopyToClipboard>
+      <br />
+
       <CopyToClipboard text={hsl} onCopy={() => setCopied(true)}>
         <HslText>{hsl.toUpperCase()}</HslText>
       </CopyToClipboard>
