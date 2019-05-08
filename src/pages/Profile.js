@@ -9,9 +9,7 @@ import NewPalette from "../components/palettes/NewPalette";
 import NotFound from "../pages/NotFound";
 
 function Profile(props) {
-  const [palettes, setPalettes] = useState(
-    JSON.parse(localStorage.getItem("palettes"))
-  );
+  const [palettes, setPalettes] = useState([]);
 
   useEffect(() => {
     return db
@@ -27,7 +25,6 @@ function Profile(props) {
           });
         });
         setPalettes(docs);
-        localStorage.setItem("palettes", JSON.stringify(docs));
       });
   }, [props.user, props.user.uid]);
 
