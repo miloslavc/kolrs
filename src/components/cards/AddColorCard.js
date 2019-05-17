@@ -40,33 +40,36 @@ function AddColorCard(props) {
 
   return (
     <Wrapper>
-      <ButtonWrapper top={move ? "100%" : null}>
-        <Title>{props.name}</Title>
-        <AddColor
-          onClick={() => {
-            setMove(!move);
-          }}
-        >
-          <h1>Add color</h1>
-        </AddColor>
-      </ButtonWrapper>
-      <PickerWrapper top={move ? "0" : "-100%"}>
-        <MyPicker
-          color={color}
-          onChangeComplete={handleChange}
-          // onChange={handleChange}
-          handleUpdate={handleUpdate}
-          width="100%"
-        />
-        {saved && (
-          <Saved
-            color={color}
-            background={textColor.isDark() ? "#fff" : "#141414"}
+      {move === false ? (
+        <ButtonWrapper>
+          <Title>{props.name}</Title>
+          <AddColor
+            onClick={() => {
+              setMove(true);
+            }}
           >
-            Saved!
-          </Saved>
-        )}
-      </PickerWrapper>
+            <h1>Add color</h1>
+          </AddColor>
+        </ButtonWrapper>
+      ) : (
+        <PickerWrapper>
+          <MyPicker
+            color={color}
+            onChangeComplete={handleChange}
+            // onChange={handleChange}
+            handleUpdate={handleUpdate}
+            width="100%"
+          />
+          {saved && (
+            <Saved
+              color={color}
+              background={textColor.isDark() ? "#fff" : "#141414"}
+            >
+              Saved!
+            </Saved>
+          )}
+        </PickerWrapper>
+      )}
     </Wrapper>
   );
 }
@@ -76,34 +79,34 @@ export default AddColorCard;
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  background: #fff;
+  /* background: #fff;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* justify-content: center; */
-  position: relative;
-  overflow: hidden;
+  align-items: center;
+  justify-content: center; */
+  /* position: relative; */
+  /* overflow: hidden; */
   border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  -webkit-filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
   filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
 `;
 
 const ButtonWrapper = styled.div`
-  position: absolute;
-  top: ${props => props.top};
+  /* position: absolute;
+  top: ${props => props.top}; */
   padding: 2.5em 1.5em;
   width: 100%;
   height: 100%;
+ background: #fff
 `;
 
 const PickerWrapper = styled.div`
-  position: absolute;
+  /* position: absolute; */
   height: 100%;
   width: 100%;
-  top: ${props => props.top};
-  padding: 1.5em;
-  background: #fff;
+  /* top: ${props => props.top}; */
+  /* padding: 1.5em; */
+  background: #000;
 `;
 
 const Title = styled.h1`

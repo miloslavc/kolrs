@@ -36,7 +36,6 @@ function ColorCard(props) {
   }, [copied, props.colorNumber]);
 
   if (props.colorNumber > 0) {
-    console.log("Its zero");
   }
 
   //color converter

@@ -7,10 +7,9 @@ import {
   Saturation
 } from "react-color/lib/components/common";
 import color from "react-color/lib/helpers/color";
-import tinycolor from "tinycolor2";
 
-export const MyPicker = ({ hex, hsl, hsv, onChange, handleUpdate }) => {
-  const handleChange = (hexCode, e) => {
+export const MyPicker = ({ rgb, hex, hsl, hsv, onChange, handleUpdate }) => {
+  const handleChangeHex = (hexCode, e) => {
     color.isValidHex(hexCode) &&
       onChange(
         {
@@ -21,33 +20,66 @@ export const MyPicker = ({ hex, hsl, hsv, onChange, handleUpdate }) => {
       );
   };
 
-  const textColor = tinycolor(hex);
+  const handleChange = (data, e) => {
+    if (data.r || data.g || data.b) {
+      onChange(
+        {
+          r: data.r || rgb.r,
+          g: data.g || rgb.g,
+          b: data.b || rgb.b,
+          source: "rgb"
+        },
+        e
+      );
+    }
+  };
 
   const styles = {
     hue: {
       height: 20,
       position: "relative",
-      marginBottom: 30,
       width: "100%",
+      marginBottom: "10px",
       borderRadius: "3px"
     },
     saturation: {
-      height: "250px",
+      height: "245px",
       position: "relative",
       width: "100%",
-      marginBottom: 30,
       borderRadius: "3px"
     },
     input: {
-      height: 60,
-      border: `2px solid ${hex}`,
-      width: "100%",
+      height: 50,
+      border: "none",
+      borderBottom: `3px solid ${hex}`,
+      width: "90%",
       textAlign: "center",
       outline: "none",
-      borderRadius: "3px",
-      background: `${hex}`,
+      background: "#000",
       fontSize: "1.2em",
-      color: `${textColor.isDark() ? "#fff" : "#141414"}`
+      margin: "0 auto",
+      marginBottom: "15px",
+      color: "#fff",
+      display: "block"
+    },
+    label: {
+      fontSize: "0.9em",
+      color: "#666"
+    },
+    rgb: {
+      height: 30,
+      width: "100%",
+      border: "none",
+      textAlign: "center",
+      outline: "none",
+      background: "#000",
+      fontSize: "1em",
+      color: "#fff",
+      display: "block"
+    },
+    single: {
+      textAlign: "center",
+      textTransform: "uppercase"
     }
   };
 
@@ -64,20 +96,51 @@ export const MyPicker = ({ hex, hsl, hsv, onChange, handleUpdate }) => {
       <div style={styles.hue}>
         <Hue hsl={hsl} onChange={onChange} pointer={MyHuePointer} />
       </div>
-      <InputWrapper>
-        <EditableInput
-          style={{ input: styles.input }}
-          value={hex}
-          // value={hex.replace("#", "")}
-          onChange={handleChange}
-          // onChange={onChange}
-          width="100%"
-          label={null}
-        />
-        <StyledButton color={hex} onClick={handleUpdate}>
-          Save
-        </StyledButton>
-      </InputWrapper>
+      <EditableInput
+        style={{ input: styles.input }}
+        value={hex}
+        // value={hex.replace("#", "")}
+        onChange={handleChangeHex}
+        // onChange={onChange}
+        width="100%"
+        label={null}
+      />
+      <RGBWrapper>
+        <div style={styles.single}>
+          <EditableInput
+            style={{ input: styles.rgb, label: styles.label }}
+            label="r"
+            value={rgb.r}
+            onChange={handleChange}
+            dragLabel="true"
+            dragMax="255"
+          />
+        </div>
+        <div style={styles.single}>
+          <EditableInput
+            style={{ input: styles.rgb, label: styles.label }}
+            label="g"
+            value={rgb.g}
+            onChange={handleChange}
+            dragLabel="true"
+            dragMax="255"
+          />
+        </div>
+        <div style={styles.single}>
+          <EditableInput
+            style={{ input: styles.rgb, label: styles.label }}
+            label="b"
+            value={rgb.b}
+            onChange={handleChange}
+            dragLabel="true"
+            dragMax="255"
+          />
+        </div>
+      </RGBWrapper>
+
+      <StyledButton color={hex} onClick={handleUpdate}>
+        Save
+      </StyledButton>
     </Wrapper>
   );
 };
@@ -89,31 +152,24 @@ const Wrapper = styled.div`
   height: 100%;
 `;
 
-const InputWrapper = styled.div`
+const RGBWrapper = styled.div`
   display: flex;
-  width: 100%;
-
-  div {
-    width: 50%;
-    margin: 0.5em;
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
-  }
+  width: 80%;
+  margin: 0 auto;
 `;
 
 const StyledButton = styled.button`
-  width: 50%;
-  border: 2px solid transparent;
-  border-radius: 3px;
+  width: 100%;
+  border: none;
   background: none;
   outline: none;
   font-size: 1.125em;
-  color: #141414;
-  margin: 0.5em;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  /* margin-top: 0.8em; */
+  padding: 1em;
   &:hover {
-    /* font-weight: bold; */
+    font-weight: bold;
     cursor: pointer;
-    border: 2px solid ${props => props.color};
   }
 `;
 
@@ -123,27 +179,29 @@ const MyPointer = () => {
     <div
       style={{
         transform: "translate(-50%, -50%)",
-        height: "18px",
-        width: "18px",
-        border: "2px solid #fff",
+        height: "22px",
+        width: "22px",
+        border: "3px solid #fff",
         borderRadius: "50%",
         cursor: "pointer",
-        filter: "drop-shadow(0 0 5px #333)"
+        filter: "drop-shadow(0 0 5px #ACACAC)"
       }}
     />
   );
 };
-//custom pointer
+//custom hue pointer
 const MyHuePointer = () => {
   return (
     <div
       style={{
-        height: "18px",
-        width: "18px",
-        border: "3px solid #fff",
+        height: "22px",
+        width: "22px",
         borderRadius: "50%",
         cursor: "pointer",
-        filter: "drop-shadow(0 0 5px #333)"
+        filter: "drop-shadow(0 0 2px #ACACAC)",
+        background: "#fff",
+        transform: "translate(-11px,-1px)",
+        position: "absolute"
       }}
     />
   );
