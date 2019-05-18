@@ -79,34 +79,23 @@ export default AddColorCard;
 const Wrapper = styled.div`
   width: 100%;
   height: 100%;
-  /* background: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
-  /* position: relative; */
-  /* overflow: hidden; */
-  border-radius: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
 `;
 
 const ButtonWrapper = styled.div`
-  /* position: absolute;
-  top: ${props => props.top}; */
   padding: 2.5em 1.5em;
   width: 100%;
   height: 100%;
- background: #fff
+  background: #fff;
+  border-radius: 5px;
+  filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
 `;
 
 const PickerWrapper = styled.div`
-  /* position: absolute; */
   height: 100%;
   width: 100%;
-  /* top: ${props => props.top}; */
-  /* padding: 1.5em; */
   background: #000;
+  border-radius: 5px;
+  filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
 `;
 
 const Title = styled.h1`
