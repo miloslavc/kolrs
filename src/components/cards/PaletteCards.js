@@ -8,6 +8,13 @@ import ColorDots from "../modals/ColorDots";
 
 function PaletteCards(props) {
   const [showButton, setShowButton] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState(
+    props.palette.colors[0]
+  );
+
+  const handleBackground = color => {
+    setBackgroundColor(color);
+  };
 
   const handleDelete = () => {
     const data = db
@@ -18,7 +25,7 @@ function PaletteCards(props) {
     data.delete();
   };
 
-  const color = tinycolor(props.palette.colors[0]);
+  const color = tinycolor(backgroundColor);
 
   return (
     <Wrapper
@@ -26,27 +33,26 @@ function PaletteCards(props) {
       onMouseLeave={() => setShowButton(false)}
     >
       <PaletteCardStyled
-        color={
-          props.palette.colors.length !== 0
-            ? props.palette.colors[0]
-            : "#141414"
-        }
+        color={props.palette.colors.length !== 0 ? backgroundColor : "#141414"}
         textColor={color.isDark() ? "#fff" : "#141414"}
       >
         <LinkWrapper
-          color={props.palette.colors[0]}
+          color={backgroundColor}
           textColor={color.isDark() ? "#fff" : "#141414"}
         >
           <Link to={`palette/${props.palette.id}`} />
         </LinkWrapper>
         <Title>{props.palette.name}</Title>
         <Number>{props.index + 1}</Number>
-        <ColorDots colors={props.palette.colors} />
+        <ColorDots
+          colors={props.palette.colors}
+          handleBackground={handleBackground}
+        />
       </PaletteCardStyled>
       {showButton && (
         <ShowDeleteCardButton
           color={color.isDark() ? "#fff" : "#141414"}
-          textColor={props.palette.colors[0]}
+          textColor={backgroundColor}
           handleDelete={handleDelete}
         />
       )}
@@ -66,7 +72,7 @@ const PaletteCardStyled = styled.div`
   background: ${props => props.color};
   color: ${props => props.textColor};
   text-decoration: none;
-  padding: 2.5em 1.5em;
+  padding: 2.5em 1.5em 1.5em;
   border-radius: 5px;
   filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
   position: relative;
@@ -91,7 +97,7 @@ const Number = styled.p`
   font-size: 1.125em;
   position: absolute;
   bottom: 1.5rem;
-  right: 2rem;
+  left: 1.5rem;
 `;
 
 const LinkWrapper = styled.div`

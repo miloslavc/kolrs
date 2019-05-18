@@ -5,7 +5,11 @@ function ColorDots(props) {
   return (
     <Wrapper>
       {props.colors.map(color => (
-        <Color key={color} color={color} />
+        <Color
+          key={color}
+          color={color}
+          onClick={() => props.handleBackground(color)}
+        />
       ))}
     </Wrapper>
   );
@@ -19,9 +23,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   align-items: flex-end;
-  margin-bottom: 1em;
   flex-wrap: wrap-reverse;
   height: 80%;
+  z-index: 49;
 `;
 
 const Color = styled.div`
@@ -29,8 +33,9 @@ const Color = styled.div`
   height: 30px;
   border: none;
   border-radius: 50%;
+  margin: 1px;
   background: ${props => props.color};
-  &:first-of-type {
+  /* &:first-of-type {
     display: none;
-  }
+  } */
 `;

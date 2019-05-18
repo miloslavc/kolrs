@@ -25,7 +25,7 @@ export default ShowDeleteCardButton;
 const ButtonStyledOpen = styled.button`
   position: absolute;
   top: 1.5em;
-  right: 1.5em;
+  right: 1.5rem;
   width: 30px;
   height: 30px;
   background: none;
@@ -44,7 +44,7 @@ const ButtonStyledOpen = styled.button`
 const ButtonStyledClosed = styled.button`
   position: absolute;
   top: 1.5em;
-  right: 1.5em;
+  right: 1.5rem;
   width: 30px;
   height: 30px;
   border: 3px solid transparent;
