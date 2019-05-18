@@ -1,21 +1,46 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "@emotion/styled";
-import { firebase } from "../../firebase";
 import Logo from "../buttons/Logo";
-import SignOutButton from "../buttons/SignOutButton";
 import Avatar from "../user/Avatar";
 import NewPaletteButton from "../buttons/NewPaletteButton";
+import ArrowButton from "../buttons/ArrowButton";
+import Menu from "./Menu";
 
-const handleSignOut = () => {
-  firebase.auth().signOut();
-};
 function Nav(props) {
+  const [showMenu, setShowMenu] = useState(false);
+  const node = useRef();
+
+  const handleClickOutside = e => {
+    if (node.current.contains(e.target)) {
+      // inside click
+      return;
+    }
+    // outside click
+    setShowMenu(false);
+  };
+
+  useEffect(() => {
+    if (showMenu) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showMenu]);
+
   return (
     <HeaderStyled>
-      <Logo color="#141414" />
-      <NewPaletteButton />
-      <Avatar user={props.user} />
-      <SignOutButton handleSignOut={handleSignOut} />
+      <nav ref={node}>
+        <Logo color="#141414" />
+        <NewPaletteButton />
+        <Avatar user={props.user} />
+        <MenuButton onClick={() => setShowMenu(!showMenu)}>
+          <ArrowButton />
+        </MenuButton>
+        {showMenu && <Menu />}
+      </nav>
     </HeaderStyled>
   );
 }
@@ -23,9 +48,20 @@ function Nav(props) {
 export default Nav;
 
 const HeaderStyled = styled.header`
-  width: 90%;
-  margin: 0 auto;
+  box-shadow: rgba(31, 53, 78, 0.11) 0 1px;
+  nav {
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    padding: 1em 0;
+  }
+`;
+
+const MenuButton = styled.div`
+  font-size: 1.5em;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 1em 0;
+  justify-content: center;
 `;
