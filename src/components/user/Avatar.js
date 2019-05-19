@@ -22,7 +22,6 @@ const User = styled.div`
   background: #5120a9;
   width: ${props => props.width};
   height: ${props => props.height};
-  margin-right: 1em;
   p {
     font-size: ${props => (props.width !== "40px" ? "2em" : "1.125em")};
     color: #fff;

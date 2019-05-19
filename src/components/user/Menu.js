@@ -27,7 +27,7 @@ export default Menu;
 
 const MenuStyled = styled.div`
   position: fixed;
-  right: 2rem;
+  right: 2.5rem;
   top: 5.5rem;
   padding: 1em;
   background: #fff;
@@ -35,6 +35,7 @@ const MenuStyled = styled.div`
   display: flex;
   flex-direction: column;
   box-shadow: rgba(31, 53, 78, 0.11) 0 0 0 1px, rgba(0, 0, 0, 0.05) 0 2px 5px;
+  z-index: 59;
   &::before {
     content: "";
     height: 20px;

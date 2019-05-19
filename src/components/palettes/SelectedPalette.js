@@ -3,10 +3,15 @@ import styled from "@emotion/styled";
 import { db } from "../../firebase";
 import ColorCard from "../cards/ColorCard";
 import AddColorCard from "../cards/AddColorCard";
+import ExportPalette from "./ExportPalette";
+import ExportButton from "../buttons/ExportButton";
+import html2canvas from "html2canvas";
+
 function SelectedPalette(props) {
   const [palette, setPalette] = useState(null);
   const [update, setUpdate] = useState(false);
   const [numberOfColors, setNumberOfColors] = useState();
+  const [exportImage, setExportImage] = useState(false);
 
   //get selected project data from firebase and put it to state
   useEffect(() => {
@@ -30,6 +35,27 @@ function SelectedPalette(props) {
       );
   }, [props.paletteId, props.user.uid]);
 
+  //export palettes as png image
+  const handlePNG = () => {
+    setExportImage(true);
+  };
+
+  useEffect(() => {
+    if (exportImage === true) {
+      html2canvas(document.querySelector("#capture")).then(canvas => {
+        const image = canvas
+          .toDataURL("image/png")
+          .replace("image/png", "image/octet-stream");
+        const link = document.createElement("a");
+        link.download = "palette.png";
+        link.href = image;
+        link.click();
+        setExportImage(false);
+      });
+    }
+    return;
+  }, [exportImage]);
+
   return (
     <Wrapper>
       <AddColorCard
@@ -50,6 +76,13 @@ function SelectedPalette(props) {
             {color}
           </ColorCard>
         ))}
+      {exportImage && (
+        <ExportPalette
+          name={update && palette.name}
+          colors={update && palette.colors}
+        />
+      )}
+      <ExportButton handlePNG={handlePNG} colors={update && palette.colors} />
     </Wrapper>
   );
 }

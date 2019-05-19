@@ -13,3 +13,20 @@ export function textColor(color) {
 export function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+//Export Palettes colors as scss variables
+export function downloadSCSS(colors) {
+  const values =
+    "/* HEX */" +
+    colors.map((color, index) => `$color${index + 1}:${color}`).join(";");
+  const element = document.createElement("a");
+  element.setAttribute(
+    "href",
+    "data:scss;charset=utf-8," + encodeURIComponent(values)
+  );
+  element.setAttribute("download", "palette.scss");
+  element.style.display = "none";
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
+}
