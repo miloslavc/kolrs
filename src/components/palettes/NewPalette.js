@@ -3,7 +3,6 @@ import { db } from "../../firebase";
 import { Redirect } from "@reach/router";
 import styled from "@emotion/styled";
 import { capitalizeFirstLetter } from "../../helpers/helpers";
-import SaveButton from "../buttons/SaveButton";
 
 function NewPalette(props) {
   const [id, setID] = useState();
@@ -57,7 +56,7 @@ function NewPalette(props) {
             autoComplete="off"
             required
           />
-          <SaveButton />
+          <ButtonStyled type="submit">Save</ButtonStyled>
         </FormStyled>
       </Modal>
       <Dimmed onClick={handleReturn} />
@@ -80,7 +79,7 @@ const Wrapper = styled.section`
   justify-content: center;
 `;
 const Modal = styled.div`
-  background: #00e095;
+  background: #fff;
   position: relative;
   z-index: 10;
   max-width: 400px;
@@ -93,7 +92,6 @@ const Modal = styled.div`
   padding: 2.5em 1.5em;
   overflow: hidden;
   filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
-
   @media (max-width: 900px) {
     width: 90%;
     margin: 0 auto;
@@ -106,7 +104,7 @@ const Dimmed = styled.div`
   left: 0;
   bottom: 0;
   right: 0;
-  background: rgba(0, 0, 0, 0);
+  background: none;
   z-index: -99;
 `;
 
@@ -117,7 +115,6 @@ const FormStyled = styled.form`
   align-items: center;
   justify-content: flex-end;
   width: 100%;
-
   input {
     height: 60px;
     font-size: 2em;
@@ -128,14 +125,13 @@ const FormStyled = styled.form`
     border-bottom: 2px solid #141414;
     outline: none;
     width: 100%;
-    background: #00e095;
+    background: #fff;
     margin-bottom: 3.2em;
     border-bottom-width: 80%;
     &:focus {
       border-bottom-width: 100%;
     }
 
-    /* placeholder css */
     ::-webkit-input-placeholder {
       color: #141414;
       opacity: 0.5;
@@ -154,6 +150,7 @@ const FormStyled = styled.form`
 `;
 
 const Heading = styled.h1`
+  padding-top: 1rem;
   font-size: 2.5em;
   display: inline-block;
   font-weight: 700;
@@ -164,5 +161,21 @@ const Heading = styled.h1`
     width: 50px;
     border-top: 3px solid ${props => props.textColor};
     top: 2rem;
+  }
+`;
+
+const ButtonStyled = styled.button`
+  background: #141414;
+  width: 100px;
+  height: 100px;
+  color: #fff;
+  font-size: 1.125em;
+  border: none;
+  border-radius: 50%;
+  outline: none;
+  justify-self: flex-end;
+  cursor: pointer;
+  &:hover {
+    filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.15));
   }
 `;
