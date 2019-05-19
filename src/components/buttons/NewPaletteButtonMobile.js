@@ -26,25 +26,18 @@ export default NewPaletteButtonMobile;
 const Button = styled.div`
   height: 60px;
   width: 60px;
-  border-radius: 50%;
-  /* background: #fff; */
   position: fixed;
   bottom: 1.5em;
   left: 50%;
   transform: translate(-50%);
-  /* display: grid;
-  place-items: center; */
   filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.3));
-
-  /* a {
-    color: #141414;
-    font-size: 3em;
-    user-select: none;
-    cursor: pointer;
+  svg {
     width: 100%;
     height: 100%;
-  } */
-
+    circle {
+      stroke: none;
+    }
+  }
   @media (min-width: 900px) {
     display: none;
   }

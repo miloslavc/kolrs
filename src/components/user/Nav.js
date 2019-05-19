@@ -33,7 +33,7 @@ function Nav(props) {
   return (
     <HeaderStyled>
       <nav ref={node}>
-        <Logo color="#141414" />
+        <Logo color="#767676" />
         <NewPaletteButton />
         <Avatar user={props.user} />
         <MenuButton onClick={() => setShowMenu(!showMenu)}>
@@ -48,7 +48,7 @@ function Nav(props) {
 export default Nav;
 
 const HeaderStyled = styled.header`
-  box-shadow: rgba(31, 53, 78, 0.11) 0 1px;
+  box-shadow: rgba(118, 118, 118, 0.2) 0 1px;
   nav {
     width: 90%;
     margin: 0 auto;

@@ -34,7 +34,7 @@ const MenuStyled = styled.div`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  box-shadow: rgba(31, 53, 78, 0.11) 0 0 0 1px, rgba(0, 0, 0, 0.05) 0 2px 5px;
+  box-shadow: rgba(118, 118, 118, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.05) 0 2px 5px;
   z-index: 59;
   &::before {
     content: "";

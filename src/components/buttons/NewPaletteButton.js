@@ -14,7 +14,7 @@ export default NewPaletteButton;
 
 const Button = styled.div`
   a {
-    color: #666;
+    color: #767676;
     border: none;
     border-radius: 5px;
     outline: none;
@@ -22,9 +22,8 @@ const Button = styled.div`
     padding: 0.5rem 1rem;
     user-select: none;
     cursor: pointer;
-    font-weight: 600;
     &:hover {
-      color: #000;
+      color: #141414;
     }
   }
   @media (max-width: 900px) {

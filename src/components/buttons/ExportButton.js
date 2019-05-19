@@ -43,14 +43,14 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  box-shadow: rgba(31, 53, 78, 0.11) 0 0 0 1px, rgba(0, 0, 0, 0.05) 0 2px 5px;
+  box-shadow: rgba(118, 118, 118, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.05) 0 2px 5px;
 `;
 
 const IconWrapper = styled.div`
   height: 25px;
   svg {
     height: 100%;
-    fill: #a6a6a6;
+    fill: #767676;
     &:hover {
       fill: #141414;
       cursor: pointer;
