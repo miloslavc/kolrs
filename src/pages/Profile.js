@@ -7,6 +7,7 @@ import AddPalette from "../components/palettes/AddPalette";
 import SelectedPalette from "../components/palettes/SelectedPalette";
 import NewPalette from "../components/palettes/NewPalette";
 import NotFound from "../pages/NotFound";
+// import Account from "./Account";
 
 function Profile(props) {
   const [palettes, setPalettes] = useState([]);
@@ -48,6 +49,7 @@ function Profile(props) {
           palettes={palettes}
           user={`${props.user.uid}`}
         />
+        {/* <Account path="account" user={props.user} /> */}
         <NotFound default />
       </Router>
     </main>

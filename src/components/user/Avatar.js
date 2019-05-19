@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "@emotion/styled";
 import robot from "../images/robot35x35.svg";
-function Avatar(props) {
+function Avatar({ user, width, height }) {
   return (
-    <User>
-      {props.user.displayName ? (
-        <p>{props.user.displayName.slice(0, 1).toUpperCase()}</p>
+    <User width={width ? width : "40px"} height={height ? height : "40px"}>
+      {user.displayName ? (
+        <p>{user.displayName.slice(0, 1).toUpperCase()}</p>
       ) : (
         <img src={robot} alt="user" />
       )}
@@ -20,11 +20,11 @@ const User = styled.div`
   place-items: center;
   border-radius: 50%;
   background: #5120a9;
-  width: 40px;
-  height: 40px;
+  width: ${props => props.width};
+  height: ${props => props.height};
   margin-right: 1em;
   p {
-    font-size: 1.125em;
+    font-size: ${props => (props.width !== "40px" ? "2em" : "1.125em")};
     color: #fff;
     text-align: center;
   }

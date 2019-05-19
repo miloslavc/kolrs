@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { firebase } from "../../firebase";
+import { Redirect } from "@reach/router";
 
-const handleSignOut = () => {
-  firebase.auth().signOut();
-};
 function Menu() {
-  return (
+  const [redirect, setRedirect] = useState(false);
+
+  const handleSignOut = () => {
+    firebase.auth().signOut();
+    setRedirect(true);
+  };
+
+  return redirect ? (
+    <Redirect to="/" />
+  ) : (
     <MenuStyled>
+      {/* <LinkWrapper>
+        <Link to="account">Account</Link>
+      </LinkWrapper> */}
       <Button onClick={handleSignOut}>Logout</Button>
     </MenuStyled>
   );
@@ -62,3 +72,20 @@ const Button = styled.button`
     color: #141414;
   }
 `;
+
+// const LinkWrapper = styled.div`
+//   a {
+//     border: none;
+//     padding: 0.5rem;
+//     outline: none;
+//     font-size: 1.125em;
+//     background: none;
+//     user-select: none;
+//     cursor: pointer;
+//     font-weight: 600;
+//     color: #666;
+//     &:hover {
+//       color: #141414;
+//     }
+//   }
+// `;
