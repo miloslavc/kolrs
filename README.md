@@ -7,53 +7,71 @@
 Create, collect, and organize colors all in one place.
 
 ## Demo
-👉 Check it <a href="https://youtu.be/mXDrn1Nwev0">here</a>.
+👉 Video introduction to <a href="https://youtu.be/mXDrn1Nwev0">Kolrs</a>.
+
+## Introduction
 
 
-### Easy to use
-
-#### 👉 Sign Up with Google or Email/Password
+#### 👉 Login/Sign Up with Google or Email/Password
 ![](demo/sign.gif)
 
 
-#### 👉 Create new Palette and add first color
-![](demo/demo.gif)
+## Creating New palette
 
-#### 👉 Save as much colors as you need
-![](demo/addcolor.gif)
+#### 👉 Create new Palette
+![](demo/addPalette.gif)
+
+#### 👉 Add colors by selecting a shade from the color picker or by inputting HEX or RGB values
+![](demo/addColors.gif)
+
+#### 👉 Each Palette can contain unlimited number of colors
+![](demo/colors.gif)
+
+## How to access color values
+
+#### 👉 Copy the color value(HEX,RGB,HSL) with just one click
+![](demo/copyColors.gif)
+
+## Export Palettes
+
+#### 👉 Entire Palette can be exported as SCSS or PNG image
+![](demo/exportPalette.gif)
 
 
-#### 👉 Copy the color value with one just click
-![](demo/copy.gif)
+####  SCSS file
+![](demo/scssExport.png)
 
+####  PNG file
+![](demo/imageExport.png)
 
-#### 👉 Remove the color from the palette
-![](demo/delete.gif)
+## How to remove color from the Palette
 
+#### 👉 In Order to remove the color from the palette, just click on the delete button that will appear once the mouse cursor hovers over the given color
+![](demo/deleteColor.gif)
 
-#### 👉 Get a quick preview of all the colors in the palette
-![](demo/dots.gif)
+## Palettes
+
+#### 👉 Back at the home page of the application, users can see all their saved palettes as well as quickly preview all colors that each palette contains simply by clicking the color dots.
+![](demo/colorPreview.gif)
 
 #### 👉 Remove the palette
-![](demo/removepalette.gif)
+![](demo/removePalettes.gif)
 
 
 ## ToDo
 
-- [ ] Performance Optimization
+- [x] Performance Optimization
+- [x] Local auth persistence
 - [ ] Add Animation
 - [ ] Firebase Anonymous SingUp/Login
-- [x] Local auth persistence
-- [ ] Chrome Plugin
+- [ ] Web Extension
 
 
 ### In Works
-💻 chrome plugin to scan/add colors from any website
+💻 Web Extension to scan/add colors from any website
 
 
-
-
-### For developers
+## For developers
 Clone the source locally:
 
 ```sh
@@ -78,9 +96,12 @@ $ yarn start
 - [React](https://github.com/facebook/react)
 - [Emotion](https://github.com/emotion-js/emotion)
 
-### Thanks
+### Dependencies
 - [tinycolor](https://github.com/bgrins/TinyColor)
-- [react-color](https://github.com/emotion-js/emotion)
+- [react-color](https://github.com/casesandberg/react-color)
+- [html2canvas](https://html2canvas.hertzen.com/)
+- [reach router](https://github.com/reach/router)
+- [react-copy-to-clipboard](https://github.com/nkbt/react-copy-to-clipboard)
 
 #### License
 
