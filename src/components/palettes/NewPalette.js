@@ -90,7 +90,7 @@ const Modal = styled.div`
   align-items: center;
   border-radius: 5px;
   padding: 2.5em 1.5em;
-  overflow: hidden;
+  /* overflow: hidden; */
   filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
   @media (max-width: 900px) {
     width: 90%;

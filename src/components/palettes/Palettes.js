@@ -30,4 +30,11 @@ const Wrapper = styled.main`
   grid-gap: 2em;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-auto-rows: 450px;
+
+  @media (max-width: 1460px) {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 0.5fr));
+  }
+  @media (max-width: 675px) {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
 `;

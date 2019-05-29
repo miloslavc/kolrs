@@ -79,6 +79,10 @@ const PaletteCardStyled = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  @media (max-width: 675px) {
+    width: 80%;
+    margin: 0 auto;
+  }
 `;
 
 const Title = styled.h1`
