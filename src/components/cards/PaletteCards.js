@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "@emotion/styled";
-import { db } from "../../firebase";
 import { Link } from "@reach/router";
 import tinycolor from "tinycolor2";
-import ShowDeleteCardButton from "../buttons/ShowDeleteCardButton";
-import ColorDots from "../modals/ColorDots";
+import { UserContext } from "../../context/UserContext";
+
+//api
+import { db } from "../../firebase";
+
+//components
+import PaletteColorPreview from "./PaletteColorPreview";
+import DeleteButton from "../buttons/DeleteButton";
+import ExportButton from "../buttons/ExportButton";
+
+//assets
+import { Card, CardH1 } from "../../elements";
+import { blackText, white } from "../../utilities";
 
 function PaletteCards(props) {
-  const [showButton, setShowButton] = useState(false);
+  const { user } = useContext(UserContext);
   const [backgroundColor, setBackgroundColor] = useState(
     props.palette.colors[0]
   );
@@ -19,43 +29,41 @@ function PaletteCards(props) {
   const handleDelete = () => {
     const data = db
       .collection("users")
-      .doc(`${props.user.uid}`)
+      .doc(`${user.uid}`)
       .collection("palettes")
       .doc(`${props.id}`);
     data.delete();
   };
 
   const color = tinycolor(backgroundColor);
+  const textColor = color.isDark() ? white : blackText;
 
   return (
-    <Wrapper
-      onMouseEnter={() => setShowButton(true)}
-      onMouseLeave={() => setShowButton(false)}
-    >
-      <PaletteCardStyled
-        color={props.palette.colors.length !== 0 ? backgroundColor : "#141414"}
-        textColor={color.isDark() ? "#fff" : "#141414"}
-      >
-        <LinkWrapper
-          color={backgroundColor}
-          textColor={color.isDark() ? "#fff" : "#141414"}
+    <Wrapper>
+      <Link to={`palette/${props.palette.id}`}>
+        <Card
+          color={
+            props.palette.colors.length !== 0 ? backgroundColor : blackText
+          }
+          textColor={textColor}
         >
-          <Link to={`palette/${props.palette.id}`} />
-        </LinkWrapper>
-        <Title>{props.palette.name}</Title>
-        <Number>{props.index + 1}</Number>
-        <ColorDots
-          colors={props.palette.colors}
-          handleBackground={handleBackground}
-        />
-      </PaletteCardStyled>
-      {showButton && (
-        <ShowDeleteCardButton
-          color={color.isDark() ? "#fff" : "#141414"}
-          textColor={backgroundColor}
+          <CardH1>{props.palette.name}</CardH1>
+          {props.preview && (
+            <PaletteColorPreview
+              colors={props.palette.colors}
+              handleBackground={handleBackground}
+            />
+          )}
+        </Card>
+      </Link>
+      <Icons>
+        <ExportButton
+          textColor={textColor}
           handleDelete={handleDelete}
+          colors={props.palette.colors}
         />
-      )}
+        <DeleteButton textColor={textColor} handleDelete={handleDelete} />
+      </Icons>
     </Wrapper>
   );
 }
@@ -64,64 +72,18 @@ export default PaletteCards;
 
 const Wrapper = styled.div`
   position: relative;
-`;
-
-const PaletteCardStyled = styled.div`
   width: 100%;
   height: 100%;
-  background: ${props => props.color};
-  color: ${props => props.textColor};
-  text-decoration: none;
-  padding: 2.5em 1.5em 1.5em;
-  border-radius: 5px;
-  filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
-  position: relative;
+`;
+
+const Icons = styled.div`
+  width: 90%;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  @media (max-width: 675px) {
-    width: 80%;
-    margin: 0 auto;
-  }
-`;
-
-const Title = styled.h1`
-  font-size: 2.5em;
-  font-weight: 500;
-  &::before {
-    content: "";
-    position: absolute;
-    width: 50px;
-    border-top: 3px solid ${props => props.textColor};
-    top: 2rem;
-  }
-`;
-
-const Number = styled.p`
-  font-size: 1.125em;
+  padding: 1em 0;
   position: absolute;
-  bottom: 1.5rem;
-  left: 1.5rem;
-`;
-
-const LinkWrapper = styled.div`
-  a {
-    height: 100%;
-    width: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  @media (max-width: 900px) {
-    a {
-      background: ${props => props.color};
-      height: 100px;
-      width: 100px;
-      top: 50%;
-      left: 50%;
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-      border: 2px solid ${props => props.textColor};
-    }
-  }
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
 `;

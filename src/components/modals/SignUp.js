@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { firebase } from "../../firebase";
-import GoogleSignIn from "../buttons/GoogleButton";
-import SigUpButton from "../buttons/SignUpButton";
+
+//assets
+import GoogleButton from "../buttons/GoogleButton";
+import { SignUpButton } from "../../elements";
+import { primary, white, error } from "../../utilities";
 
 function SignUp(props) {
   const [password, setPassword] = useState();
@@ -22,7 +25,7 @@ function SignUp(props) {
   return (
     <Wrapper>
       <Modal>
-        <GoogleSignIn />
+        <GoogleButton />
         <p>or</p>
         <FormStyled onSubmit={handleEmailSignUp}>
           {authError
@@ -55,7 +58,7 @@ function SignUp(props) {
             autoCorrect="off"
             required
           />
-          <SigUpButton />
+          <SignUpButton type="submit">Create new Account</SignUpButton>
         </FormStyled>
       </Modal>
       <Dimmed onClick={props.handleClick} />
@@ -82,15 +85,12 @@ const Wrapper = styled.div`
 `;
 
 const Modal = styled.div`
-  background: #fff;
+  background: ${white};
   z-index: 10;
   padding: 2em;
   max-width: 400px;
   width: 100%;
-  @media (max-width: 900px) {
-    width: 90%;
-    margin: 0 auto;
-  }
+  border-radius: 5px;
 `;
 
 const Dimmed = styled.div`
@@ -119,13 +119,13 @@ const FormStyled = styled.form`
     border: 1px solid #d4d4d4;
     outline: none;
     &:focus {
-      border: 1px solid #5120a9;
+      border: 1px solid ${primary};
     }
   }
 `;
 
 const ErrorStyled = styled.label`
-  color: #ff4045;
+  color: ${error};
   margin: 0;
   text-align: left;
   width: 100%;

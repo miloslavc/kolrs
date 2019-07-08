@@ -1,10 +1,32 @@
-import React, { useRef, useState, useEffect } from "react";
-import { db } from "../../firebase";
-import { Redirect } from "@reach/router";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import styled from "@emotion/styled";
+import { Redirect } from "@reach/router";
 import { capitalizeFirstLetter } from "../../helpers/helpers";
 
+//api
+import { db } from "../../firebase";
+
+//context
+import { UserContext } from "../../context/UserContext";
+
+//components
+import AddColorCard from "../cards/AddColorCard";
+
+//assets
+import {
+  BackIcon,
+  ExportImageIcon,
+  ExportImageScss,
+  SaveIcon,
+  CloseIcon,
+  CloseButton,
+  AppButton
+} from "../../elements";
+import { black, white } from "../../utilities";
+
 function NewPalette(props) {
+  const { user } = useContext(UserContext);
+
   const [id, setID] = useState();
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [shouldReturn, setShouldReturn] = useState(false);
@@ -27,7 +49,7 @@ function NewPalette(props) {
       createdAt: new Date()
     };
     db.collection("users")
-      .doc(`${props.user}`)
+      .doc(`${user.uid}`)
       .collection("palettes")
       .doc(`${id}`)
       .set({ ...palette });
@@ -45,8 +67,18 @@ function NewPalette(props) {
     <Redirect from="/new" to={`palette/${id}`} noThrow />
   ) : (
     <Wrapper>
+      <Header>
+        <BackIcon />
+        <h2>New Palette</h2>
+        <div>
+          <ExportImageIcon />
+          <ExportImageScss />
+        </div>
+      </Header>
+      <Content>
+        <AddColorCard name="Create new palette" />
+      </Content>
       <Modal>
-        <Heading>Create new palette</Heading>
         <FormStyled onSubmit={handleSubmit}>
           <input
             ref={paletteNameRef}
@@ -56,10 +88,15 @@ function NewPalette(props) {
             autoComplete="off"
             required
           />
-          <ButtonStyled type="submit">Save</ButtonStyled>
+          <AppButton type="submit">
+            <SaveIcon />
+          </AppButton>
+          <CloseButton onClick={handleReturn}>
+            <CloseIcon />
+          </CloseButton>
         </FormStyled>
+        <Dimmed onClick={handleReturn} />
       </Modal>
-      <Dimmed onClick={handleReturn} />
       {shouldReturn && <Redirect from="/new" to="/" noThrow />}
     </Wrapper>
   );
@@ -68,34 +105,53 @@ function NewPalette(props) {
 export default NewPalette;
 
 const Wrapper = styled.section`
+  min-height: 100%;
+  display: grid;
+  grid-gap: 2em;
+  grid-template-rows: auto 1fr;
+  position: relative;
+`;
+
+const Header = styled.div`
+  min-height: 5vh;
+  border-bottom: 1px solid ${black};
+  padding: 0 5%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  a {
+    justify-self: start;
+  }
+  div {
+    justify-self: end;
+    display: flex;
+    pointer-events: none;
+  }
+`;
+
+const Content = styled.div`
+  width: 90%;
+  margin: 0 auto;
+  display: grid;
+  grid-auto-flow: row;
+  grid-gap: 2em;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-auto-rows: 350px;
+  pointer-events: none;
+`;
+
+const Modal = styled.div`
+  background: rgba(18, 18, 18, 0.8);
   position: fixed;
+  z-index: 10;
   top: 0;
   left: 0;
-  bottom: 0;
   right: 0;
-  display: flex;
+  bottom: 0;
+  display: grid;
   align-items: center;
-  flex-direction: column;
-  justify-content: center;
-`;
-const Modal = styled.div`
-  background: #fff;
-  position: relative;
-  z-index: 10;
-  max-width: 400px;
-  height: 560px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 5px;
-  padding: 2.5em 1.5em;
-  /* overflow: hidden; */
-  filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
-  @media (max-width: 900px) {
-    width: 90%;
-    margin: 0 auto;
-  }
+  justify-items: center;
 `;
 
 const Dimmed = styled.div`
@@ -109,73 +165,44 @@ const Dimmed = styled.div`
 `;
 
 const FormStyled = styled.form`
+  background: ${white};
+  border-radius: 5px;
+  max-width: 350px;
+  width: 100%;
+  padding: 4em 2em 2em;
   display: flex;
   flex-direction: column;
-  height: 85%;
   align-items: center;
-  justify-content: flex-end;
-  width: 100%;
+  justify-content: center;
+  position: relative;
   input {
-    height: 60px;
-    font-size: 2em;
-    color: #141414;
+    font-size: 1.5em;
+    color: ${black};
     padding-left: 0.1em;
     font-weight: 400;
     border: none;
-    border-bottom: 2px solid #141414;
+    border-bottom: 2px solid ${black};
     outline: none;
     width: 100%;
     background: #fff;
-    margin-bottom: 3.2em;
+    margin-bottom: 3rem;
     border-bottom-width: 80%;
     &:focus {
       border-bottom-width: 100%;
     }
-
     ::-webkit-input-placeholder {
-      color: #141414;
+      color: ${black};
       opacity: 0.5;
     }
     ::-moz-placeholder {
-      color: #141414;
+      color: ${black};
       opacity: 0.5;
     }
     :-ms-input-placeholder {
-      color: #141414;
+      color: ${black};
     }
     :-moz-placeholder {
-      color: #141414;
+      color: ${black};
     }
-  }
-`;
-
-const Heading = styled.h1`
-  padding-top: 1rem;
-  font-size: 2.5em;
-  display: inline-block;
-  font-weight: 700;
-
-  &::before {
-    content: "";
-    position: absolute;
-    width: 50px;
-    border-top: 3px solid ${props => props.textColor};
-    top: 2rem;
-  }
-`;
-
-const ButtonStyled = styled.button`
-  background: #141414;
-  width: 100px;
-  height: 100px;
-  color: #fff;
-  font-size: 1.125em;
-  border: none;
-  border-radius: 50%;
-  outline: none;
-  justify-self: flex-end;
-  cursor: pointer;
-  &:hover {
-    filter: drop-shadow(0px 5px 15px rgba(0, 0, 0, 0.15));
   }
 `;

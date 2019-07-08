@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "@emotion/styled";
 
-function ColorDots(props) {
+function PaletteColorPreview(props) {
   return (
     <Wrapper>
-      {props.colors.map(color => (
+      {props.colors.slice(1).map(color => (
         <Color
           key={color}
           color={color}
@@ -15,25 +15,26 @@ function ColorDots(props) {
   );
 }
 
-export default ColorDots;
+export default PaletteColorPreview;
 
 const Wrapper = styled.div`
-  align-self: flex-end;
+  align-self: flex-start;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-  flex-wrap: wrap-reverse;
-  height: 80%;
-  z-index: 49;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  /* height: 80%; */
+  z-index: 199;
+  /* border: 2px solid red; */
 `;
 
 const Color = styled.div`
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   border: none;
   border-radius: 50%;
-  margin: 1px;
+  margin: 3px;
   background: ${props => props.color};
   /* &:first-of-type {
     display: none;

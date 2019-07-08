@@ -1,20 +1,27 @@
-import React, { useState, useEffect } from "react";
-import Nav from "../components/user/Nav";
-import { db } from "../firebase";
+import React, { useState, useEffect, useContext } from "react";
 import { Router } from "@reach/router";
+import { UserContext } from "../context/UserContext";
+
+//api
+import { db } from "../firebase";
+
+//layout
+import HeaderApp from "../layouts/HeaderApp";
+
+//pages
 import Palettes from "../components/palettes/Palettes";
-import AddPalette from "../components/palettes/AddPalette";
 import SelectedPalette from "../components/palettes/SelectedPalette";
 import NewPalette from "../components/palettes/NewPalette";
-import NotFound from "../pages/NotFound";
 // import Account from "./Account";
-function Profile(props) {
+
+function Profile() {
+  const { user } = useContext(UserContext);
   const [palettes, setPalettes] = useState([]);
 
   useEffect(() => {
     return db
       .collection("users")
-      .doc(`${props.user.uid}`)
+      .doc(`${user.uid}`)
       .collection("palettes")
       .orderBy("createdAt", "desc")
       .onSnapshot(snapshot => {
@@ -26,32 +33,18 @@ function Profile(props) {
         });
         setPalettes(docs);
       });
-  }, [props.user, props.user.uid]);
+  }, [user, user.uid]);
 
   return (
-    <main>
-      <Nav user={props.user} />
-      <Router>
-        {palettes.length ? (
-          <Palettes
-            path="/"
-            palettes={palettes}
-            color={palettes.colors}
-            user={props.user}
-          />
-        ) : (
-          <AddPalette path="/" />
-        )}
-        <SelectedPalette path="palette/:paletteId" user={props.user} />
-        <NewPalette
-          path="/new"
-          palettes={palettes}
-          user={`${props.user.uid}`}
-        />
-        {/* <Account path="account" user={props.user} /> */}
-        <NotFound default />
+    <>
+      <HeaderApp />
+      <Router primary={false}>
+        <Palettes path="/" palettes={palettes} />
+        <SelectedPalette path="palette/:paletteId" />
+        <NewPalette path="/new" palettes={palettes} />
+        {/* <Account path="account" /> */}
       </Router>
-    </main>
+    </>
   );
 }
 

@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { firebase } from "../../firebase";
-import GoogleSignIn from "../buttons/GoogleButton";
-import LoginButton from "../buttons/LoginButton";
+
+//assets
+import GoogleButton from "../buttons/GoogleButton";
+import { LoginButton } from "../../elements";
+import { white, error } from "../../utilities";
 
 function Login(props) {
   const [password, setPassword] = useState();
@@ -22,7 +25,7 @@ function Login(props) {
   return (
     <Wrapper>
       <Modal>
-        <GoogleSignIn />
+        <GoogleButton />
         <p>or</p>
         <FormStyled onSubmit={handleEmailSignIn}>
           {authError
@@ -53,7 +56,7 @@ function Login(props) {
             placeholder="Password"
             required
           />
-          <LoginButton />
+          <LoginButton type="submit">Sign in</LoginButton>
         </FormStyled>
       </Modal>
       <Dimmed onClick={props.handleClick} />
@@ -80,16 +83,13 @@ const Wrapper = styled.div`
 `;
 
 const Modal = styled.div`
-  background: #fff;
+  background: ${white};
   z-index: 10;
   padding: 2em;
   max-width: 400px;
   width: 100%;
   z-index: 98;
-  @media (max-width: 900px) {
-    width: 90%;
-    margin: 0 auto;
-  }
+  border-radius: 5px;
 `;
 
 const Dimmed = styled.div`
@@ -124,7 +124,7 @@ const FormStyled = styled.form`
 `;
 
 const ErrorStyled = styled.label`
-  color: #ff4045;
+  color: ${error};
   margin: 0;
   text-align: left;
   width: 100%;

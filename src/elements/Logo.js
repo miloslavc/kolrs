@@ -1,25 +1,26 @@
 import React from "react";
-import logo from "../images/logo/logo40x40.svg";
 import styled from "@emotion/styled";
 import { Link } from "@reach/router";
 
-function Logo(props) {
+//assets
+import logo from "../components/images/logo/logo_02.png";
+
+export function Logo(props) {
   return (
     <LogoWrapper>
       <Link to="/">
         <LogoButton color={props.color}>
           <img src={logo} alt="Kolrs" />
-          <p>beta</p>
+          <p>KOLRS</p>
         </LogoButton>
       </Link>
     </LogoWrapper>
   );
 }
 
-export default Logo;
-
 const LogoWrapper = styled.div`
   margin-right: auto;
+  cursor: pointer;
 `;
 
 const LogoButton = styled.div`
@@ -31,7 +32,7 @@ const LogoButton = styled.div`
     width: 35px;
   }
   p {
-    font-size: 1.125em;
+    font-size: 0.9em;
     color: ${props => props.color};
     font-weight: 500;
     margin-left: 0.2em;

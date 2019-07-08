@@ -1,12 +1,15 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "@emotion/styled";
-import Logo from "../buttons/Logo";
-import Avatar from "../user/Avatar";
-import NewPaletteButton from "../buttons/NewPaletteButton";
-import ArrowButton from "../buttons/ArrowButton";
-import Menu from "./Menu";
 
-function Nav(props) {
+//assets
+import { Logo, MenuIcon } from "../elements";
+import { white, black } from "../utilities";
+
+//components
+import Avatar from "../components/user/Avatar";
+import Menu from "../components/user/Menu";
+
+function HeaderApp() {
   const [showMenu, setShowMenu] = useState(false);
   const node = useRef();
 
@@ -30,40 +33,35 @@ function Nav(props) {
     };
   }, [showMenu]);
 
+  const handleClick = () => {
+    setShowMenu(!showMenu);
+  };
+
   return (
     <HeaderStyled>
       <nav ref={node}>
-        <Logo color="#767676" />
-        <NewPaletteButton />
-        <Avatar user={props.user} />
-        <MenuButton onClick={() => setShowMenu(!showMenu)}>
-          <ArrowButton />
-        </MenuButton>
+        <Logo color={white} />
+        <Avatar />
+        <span onClick={handleClick}>
+          <MenuIcon />
+        </span>
         {showMenu && <Menu />}
       </nav>
     </HeaderStyled>
   );
 }
 
-export default Nav;
+export default HeaderApp;
 
 const HeaderStyled = styled.header`
-  box-shadow: rgba(118, 118, 118, 0.2) 0 1px;
+  box-shadow: 0 1px rgba(118, 118, 118, 0.2);
+  background: ${black};
   nav {
     width: 90%;
     margin: 0 auto;
     display: flex;
     align-items: center;
-    padding: 1em 0;
+    padding: 0.5em 0;
+    color: ${white};
   }
-`;
-
-const MenuButton = styled.div`
-  font-size: 1.5em;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
 `;

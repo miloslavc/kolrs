@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "@emotion/styled";
+import { UserContext } from "../../context/UserContext";
+
+//assets
+import { primary } from "../../utilities";
 import robot from "../images/robot35x35.svg";
-function Avatar({ user, width, height }) {
+
+function Avatar({ width, height }) {
+  const { user } = useContext(UserContext);
+
   return (
-    <User width={width ? width : "40px"} height={height ? height : "40px"}>
+    <User width={width ? width : "30px"} height={height ? height : "30px"}>
       {user.displayName ? (
         <p>{user.displayName.slice(0, 1).toUpperCase()}</p>
       ) : (
@@ -17,13 +24,14 @@ export default Avatar;
 
 const User = styled.div`
   display: grid;
-  place-items: center;
+  align-items: center;
+  justify-items: center;
   border-radius: 50%;
-  background: #5120a9;
+  background: ${primary};
   width: ${props => props.width};
   height: ${props => props.height};
   p {
-    font-size: ${props => (props.width !== "40px" ? "2em" : "1.125em")};
+    font-size: ${props => (props.width !== "30px" ? "2em" : "1em")};
     color: #fff;
     text-align: center;
   }

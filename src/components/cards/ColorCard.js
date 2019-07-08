@@ -1,14 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "@emotion/styled";
-import { db, firebase } from "../../firebase";
 import tinycolor from "tinycolor2";
 import { Redirect } from "@reach/router";
-import DeleteCardButton from "../buttons/DeleteCardButton";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { UserContext } from "../../context/UserContext";
+
+//components
+import DeleteButton from "../buttons/DeleteButton";
+
+//api
+import { db, firebase } from "../../firebase";
+
+//assets
+import { Card, CardH1, CardH2, CardH3 } from "../../elements";
+import { blackText, white } from "../../utilities";
 
 function ColorCard(props) {
+  const { user } = useContext(UserContext);
+
   const [shouldRedirect, setShouldRedirect] = useState(false);
-  const [showButton, setShowButton] = useState(false);
   const [copied, setCopied] = useState(false);
 
   //delete color or palette
@@ -16,7 +26,7 @@ function ColorCard(props) {
     const color = props.color;
     const data = db
       .collection("users")
-      .doc(`${props.user.uid}`)
+      .doc(`${user.uid}`)
       .collection("palettes")
       .doc(`${props.id}`);
     if (props.colorNumber > 1) {
@@ -47,88 +57,37 @@ function ColorCard(props) {
   return shouldRedirect ? (
     <Redirect to="/" />
   ) : (
-    <Card
-      color={props.color}
-      textColor={color.isDark() ? "#fff" : "#141414"}
-      onMouseEnter={() => setShowButton(true)}
-      onMouseLeave={() => setShowButton(false)}
-    >
+    <Card color={props.color} textColor={color.isDark() ? white : blackText}>
       <CopyToClipboard text={hex} onCopy={() => setCopied(true)}>
-        <HexText>{hex.toUpperCase()}</HexText>
+        <CardH1>{hex.toUpperCase()}</CardH1>
       </CopyToClipboard>
       <br />
       <CopyToClipboard text={rgb} onCopy={() => setCopied(true)}>
-        <RgbText>{rgb.toUpperCase()}</RgbText>
+        <CardH2>{rgb.toUpperCase()}</CardH2>
       </CopyToClipboard>
       <br />
-
       <CopyToClipboard text={hsl} onCopy={() => setCopied(true)}>
-        <HslText>{hsl.toUpperCase()}</HslText>
+        <CardH3>{hsl.toUpperCase()}</CardH3>
       </CopyToClipboard>
-      <p>{props.index + 1}</p>
-      {showButton && (
-        <DeleteCardButton
-          color={color.isDark() ? "#fff" : "#141414"}
-          iconColor={props.color}
-          handleDelete={handleDelete}
-        />
-      )}
       {copied && (
         <Copy
-          background={color.isDark() ? "#fff" : "#141414"}
+          background={color.isDark() ? white : blackText}
           color={props.color}
         >
           Copied
         </Copy>
       )}
+      <Icons>
+        <DeleteButton
+          textColor={color.isDark() ? white : blackText}
+          handleDelete={handleDelete}
+        />
+      </Icons>
     </Card>
   );
 }
 
 export default ColorCard;
-
-const Card = styled.div`
-  background: ${props => props.color};
-  color: ${props => props.textColor};
-  position: relative;
-  padding: 2.5em 1.5em;
-  border-radius: 5px;
-  filter: drop-shadow(0px 14px 28px rgba(0, 0, 0, 0.3));
-  p {
-    position: absolute;
-    font-size: 1.125em;
-    bottom: 1.5rem;
-    right: 2rem;
-  }
-`;
-
-const HexText = styled.h1`
-  cursor: pointer;
-  font-size: 2.5em;
-  margin-bottom: 1.5rem;
-  display: inline-block;
-  font-weight: 500;
-  &::before {
-    content: "";
-    position: absolute;
-    width: 50px;
-    border-top: 3px solid ${props => props.textColor};
-    top: 2rem;
-  }
-`;
-const RgbText = styled.h1`
-  cursor: pointer;
-  font-size: 1.75em;
-  margin-bottom: 1.5rem;
-  display: inline-block;
-  font-weight: 500;
-`;
-const HslText = styled.h1`
-  cursor: pointer;
-  font-size: 1.25em;
-  display: inline-block;
-  font-weight: 500;
-`;
 
 const Copy = styled.h1`
   cursor: pointer;
@@ -141,4 +100,16 @@ const Copy = styled.h1`
   bottom: 1.5rem;
   left: 1.5rem;
   font-weight: 500;
+`;
+
+const Icons = styled.div`
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1em 0;
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
 `;

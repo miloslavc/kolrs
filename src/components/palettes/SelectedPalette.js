@@ -1,13 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "@emotion/styled";
+import { UserContext } from "../../context/UserContext";
+
+//api
 import { db } from "../../firebase";
+
+//components
 import ColorCard from "../cards/ColorCard";
 import AddColorCard from "../cards/AddColorCard";
-import ExportPalette from "./ExportPalette";
-import ExportButton from "../buttons/ExportButton";
+import PaletteImage from "../../helpers/PaletteImage";
+
+// import ExportButton from "../buttons/ExportButton";
 import html2canvas from "html2canvas";
 
+//assets
+import { BackIcon, ExportImageIcon, ExportImageScss } from "../../elements";
+import { black } from "../../utilities";
+
 function SelectedPalette(props) {
+  const { user } = useContext(UserContext);
   const [palette, setPalette] = useState(null);
   const [update, setUpdate] = useState(false);
   const [numberOfColors, setNumberOfColors] = useState();
@@ -17,7 +28,7 @@ function SelectedPalette(props) {
   useEffect(() => {
     return db
       .collection("users")
-      .doc(`${props.user.uid}`)
+      .doc(`${user.uid}`)
       .collection("palettes")
       .doc(`${props.paletteId}`)
       .onSnapshot(
@@ -33,13 +44,15 @@ function SelectedPalette(props) {
           }
         }
       );
-  }, [props.paletteId, props.user.uid]);
+  }, [props.paletteId, user.uid]);
 
   //export palettes as png image
   const handlePNG = () => {
     setExportImage(true);
+    console.log("click");
   };
 
+  // issue with loading module - to be fixed
   useEffect(() => {
     if (exportImage === true) {
       html2canvas(document.querySelector("#capture")).then(canvas => {
@@ -58,31 +71,38 @@ function SelectedPalette(props) {
 
   return (
     <Wrapper>
-      <AddColorCard
-        user={props.user}
-        paletteId={props.paletteId}
-        name={palette && palette.name}
-      />
-      {update &&
-        palette.colors.map((color, index) => (
-          <ColorCard
-            key={color}
-            color={color}
-            user={props.user}
-            id={props.paletteId}
-            colorNumber={numberOfColors}
-            index={index}
-          >
-            {color}
-          </ColorCard>
-        ))}
-      {exportImage && (
-        <ExportPalette
-          name={update && palette.name}
-          colors={update && palette.colors}
+      <Header>
+        <BackIcon />
+        <h2>{palette && palette.name}</h2>
+        <div>
+          <ExportImageIcon handlePNG={handlePNG} />
+          <ExportImageScss colors={update && palette.colors} />
+        </div>
+      </Header>
+      <Content>
+        <AddColorCard
+          paletteId={props.paletteId}
+          name={palette && palette.name}
         />
-      )}
-      <ExportButton handlePNG={handlePNG} colors={update && palette.colors} />
+        {update &&
+          palette.colors.map((color, index) => (
+            <ColorCard
+              key={color}
+              color={color}
+              id={props.paletteId}
+              colorNumber={numberOfColors}
+              index={index}
+            >
+              {color}
+            </ColorCard>
+          ))}
+        {exportImage && (
+          <PaletteImage
+            name={update && palette.name}
+            colors={update && palette.colors}
+          />
+        )}
+      </Content>
     </Wrapper>
   );
 }
@@ -91,10 +111,34 @@ export default SelectedPalette;
 
 const Wrapper = styled.div`
   display: grid;
+  grid-gap: 2em;
+  grid-template-rows: auto 1fr;
+  margin-bottom: 2em;
+`;
+
+const Header = styled.div`
+  min-height: 5vh;
+  border-bottom: 1px solid ${black};
+  padding: 0 5%;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+  a {
+    justify-self: start;
+  }
+  div {
+    justify-self: end;
+    display: flex;
+  }
+`;
+
+const Content = styled.div`
   width: 90%;
-  margin: 2em auto;
+  margin: 0 auto;
+  display: grid;
   grid-auto-flow: row;
   grid-gap: 2em;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-auto-rows: 450px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-auto-rows: 350px;
 `;

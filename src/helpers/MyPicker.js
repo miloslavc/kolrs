@@ -36,44 +36,44 @@ export const MyPicker = ({ rgb, hex, hsl, hsv, onChange, handleUpdate }) => {
 
   const styles = {
     hue: {
-      height: 20,
+      height: 15,
       position: "relative",
       width: "100%",
-      marginBottom: "10px",
+      marginBottom: "5px",
       borderRadius: "3px"
     },
     saturation: {
-      height: "245px",
+      height: "200px",
       position: "relative",
       width: "100%",
       borderRadius: "3px"
     },
     input: {
-      height: 50,
+      height: 35,
       border: "none",
-      borderBottom: `3px solid ${hex}`,
+      borderBottom: `2px solid ${hex}`,
       width: "90%",
       textAlign: "center",
       outline: "none",
       background: "#000",
       fontSize: "1.2em",
       margin: "0 auto",
-      marginBottom: "15px",
+      marginBottom: "10px",
       color: "#fff",
       display: "block"
     },
     label: {
-      fontSize: "0.9em",
+      fontSize: "0.8em",
       color: "#666"
     },
     rgb: {
-      height: 30,
+      height: 20,
       width: "100%",
       border: "none",
       textAlign: "center",
       outline: "none",
       background: "#000",
-      fontSize: "1em",
+      fontSize: "0.9em",
       color: "#fff",
       display: "block"
     },
@@ -165,10 +165,8 @@ const StyledButton = styled.button`
   outline: none;
   font-size: 1.125em;
   color: #fff;
-  /* margin-top: 0.8em; */
-  padding: 1em;
+  padding: 0.5em;
   &:hover {
-    font-weight: bold;
     cursor: pointer;
   }
 `;
@@ -194,8 +192,8 @@ const MyHuePointer = () => {
   return (
     <div
       style={{
-        height: "22px",
-        width: "22px",
+        height: "17px",
+        width: "17px",
         borderRadius: "50%",
         cursor: "pointer",
         filter: "drop-shadow(0 0 2px #ACACAC)",

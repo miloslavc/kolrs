@@ -27,11 +27,11 @@ export default Menu;
 
 const MenuStyled = styled.div`
   position: fixed;
-  right: 2.5rem;
-  top: 5.5rem;
+  right: 2rem;
+  top: 4.5rem;
   padding: 1em;
   background: #fff;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   box-shadow: rgba(118, 118, 118, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.05) 0 2px 5px;
