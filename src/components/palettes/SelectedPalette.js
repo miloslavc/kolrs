@@ -15,7 +15,7 @@ import html2canvas from "html2canvas";
 
 //assets
 import { BackIcon, ExportImageIcon, ExportImageScss } from "../../elements";
-import { black } from "../../utilities";
+import { black } from "../../utils";
 
 function SelectedPalette(props) {
   const { user } = useContext(UserContext);

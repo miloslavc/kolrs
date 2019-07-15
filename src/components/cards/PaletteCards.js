@@ -14,7 +14,7 @@ import ExportButton from "../buttons/ExportButton";
 
 //assets
 import { Card, CardH1 } from "../../elements";
-import { blackText, white } from "../../utilities";
+import { blackText, white } from "../../utils";
 
 function PaletteCards(props) {
   const { user } = useContext(UserContext);

@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { Link } from "@reach/router";
 
 //assets
-import { blackText, white, mq } from "../utilities";
+import { blackText, white, mq } from "../utils";
 import { downloadSCSS } from "../helpers/helpers";
 
 //icons

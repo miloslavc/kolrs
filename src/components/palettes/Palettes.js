@@ -8,7 +8,7 @@ import PaletteCards from "../cards/PaletteCards";
 //assets
 import { AddIcon, PreviewIcon, OrderIcon } from "../../elements";
 import { FiPlus } from "react-icons/fi";
-import { black, blackText } from "../../utilities";
+import { black, blackText } from "../../utils";
 
 function Palettes({ palettes, handleOrder }) {
   const [preview, setPreview] = useState(false);

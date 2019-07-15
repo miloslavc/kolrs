@@ -29,20 +29,6 @@ function App() {
       <Profile />
     </UserContext.Provider>
   );
-
-  // router
-  // return (
-  //       <Router>
-  //     {loading ? (
-  //       <Loader path="/" />
-  //     ) : user === null ? (
-  //       <Home path="/" />
-  //     ) : (
-  //       <Profile path="/" user={user} />
-  //     )}
-  //      <NotFound default />
-  //      </Router>
-  // );
 }
 
 export default App;

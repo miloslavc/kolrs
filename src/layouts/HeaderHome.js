@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 
 //assets
 import { SignIn, SignUp, Logo } from "../elements";
-import { white } from "../utilities";
+import { white } from "../utils";
 
 function HeaderHome({ signUp, login }) {
   return (

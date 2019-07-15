@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 
 //assets
 import { FiX, FiCheck } from "react-icons/fi";
-import { blackText, white } from "../../utilities";
+import { blackText, white } from "../../utils";
 
 function DeleteButton({ handleDelete, textColor }) {
   const [showDelete, setShowDelete] = useState(false);

@@ -3,7 +3,7 @@ import Lottie from "react-lottie";
 import data from "../components/images/data.json";
 import styled from "@emotion/styled";
 
-import { black } from "../utilities";
+import { black } from "../utils";
 
 function Loader() {
   const defaultOptions = {

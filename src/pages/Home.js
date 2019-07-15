@@ -12,7 +12,7 @@ import SignUp from "../components/modals/SignUp";
 //assets
 import { HeroButton } from "../elements";
 import KolrsVideo from "../components/images/Kolrs.mp4";
-import { white, black, mq } from "../utilities";
+import { white, black, mq } from "../utils";
 
 function Home() {
   const [toggleSignUp, setToggleSignUp] = useState(false);
@@ -20,19 +20,23 @@ function Home() {
 
   const handleSignUp = () => {
     setToggleSignUp(!toggleSignUp);
+    setToggleLogin(false);
   };
+
   const handleLogin = () => {
     setToggleLogin(!toggleLogin);
+    setToggleSignUp(false);
   };
 
   return (
     <Wrapper>
       <HeaderHome signUp={handleSignUp} login={handleLogin} />
-      {/* modals */}
-      {toggleSignUp ? <SignUp handleClick={handleSignUp} /> : null}
-      {toggleLogin ? (
-        <Login signUp={handleSignUp} handleClick={handleLogin} />
-      ) : null}
+      {toggleSignUp && (
+        <SignUp handleSignUp={handleSignUp} handleLogin={handleLogin} />
+      )}
+      {toggleLogin && (
+        <Login handleSignUp={handleSignUp} handleLogin={handleLogin} />
+      )}
       {/* content */}
       <Content>
         <HeroText>

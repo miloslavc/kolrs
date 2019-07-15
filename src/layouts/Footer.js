@@ -2,7 +2,7 @@ import React from "react";
 import styled from "@emotion/styled";
 
 //assets
-import { primary } from "../utilities";
+import { primary } from "../utils";
 
 function Footer() {
   return (

@@ -1,10 +1,7 @@
 import styled from "@emotion/styled";
-// import { css } from "@emotion/core";
 
 //assets
-import { CardShadow } from "../utilities";
-
-//mixins
+import { CardShadow } from "../utils";
 
 export const Card = styled.div`
   width: 100%;

@@ -6,7 +6,7 @@ import tinycolor from "tinycolor2";
 import { UserContext } from "../../context/UserContext";
 
 //assets
-import { CardShadow, white, blackText, black } from "../../utilities";
+import { CardShadow, white, blackText, black } from "../../utils";
 import { FiPlus } from "react-icons/fi";
 
 function AddColorCard(props) {

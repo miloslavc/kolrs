@@ -13,7 +13,7 @@ import { db, firebase } from "../../firebase";
 
 //assets
 import { Card, CardH1, CardH2, CardH3 } from "../../elements";
-import { blackText, white } from "../../utilities";
+import { blackText, white } from "../../utils";
 
 function ColorCard(props) {
   const { user } = useContext(UserContext);

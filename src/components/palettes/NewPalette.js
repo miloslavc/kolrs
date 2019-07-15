@@ -22,7 +22,7 @@ import {
   CloseButton,
   AppButton
 } from "../../elements";
-import { black, white } from "../../utilities";
+import { black, white } from "../../utils";
 
 function NewPalette(props) {
   const { user } = useContext(UserContext);

@@ -4,7 +4,7 @@ import { downloadSCSS } from "../../helpers/helpers";
 
 //assets
 import { FiShare2, FiTerminal, FiImage } from "react-icons/fi";
-import { blackText, white } from "../../utilities";
+import { blackText, white } from "../../utils";
 
 function ExportButton({ handleDelete, textColor, colors }) {
   const [showExport, setShowExport] = useState(false);

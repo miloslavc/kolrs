@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 
 //assets
 import { Logo, MenuIcon } from "../elements";
-import { white, black } from "../utilities";
+import { white, black } from "../utils";
 
 //components
 import Avatar from "../components/user/Avatar";

@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 
 //mixins
-import { white, primary, black, mq } from "../utilities";
+import { white, primary, black, mq, secondary, gray, link } from "../utils";
 
 //home
 export const HeroButton = styled.button`
@@ -31,7 +31,7 @@ const button = css`
   font-size: 1em;
   border: none;
   outline: none;
-  border-radius: 3px;
+  border-radius: 5px;
   &:hover {
     cursor: pointer;
   }
@@ -39,13 +39,13 @@ const button = css`
 
 export const SignUpButton = styled.button`
   ${button}
-  background: ${primary};
+  background: ${secondary};
   color: ${white};
 `;
 
 export const LoginButton = styled.button`
   ${button}
-  background: #00e095;
+  background: ${primary};
   color: ${white};
 `;
 
@@ -53,9 +53,9 @@ export const GoogleSignInButton = styled.button`
   ${button}
   background: ${white};
   color: #666;
-  border: 1px solid #666;
+  border: 1px solid ${gray};
   &:hover {
-    background: #efefef;
+  background: #f4f4f4;
   }
 `;
 
@@ -63,9 +63,10 @@ export const GoogleSignInButton = styled.button`
 const headerButton = css`
   border: none;
   outline: none;
-  font-size: 1em;
+  font-size: 0.9em;
   user-select: none;
   font-weight: 600;
+  text-transform: uppercase;
   &:hover {
     cursor: pointer;
   }
@@ -74,19 +75,21 @@ const headerButton = css`
 export const SignIn = styled.button`
   ${headerButton}
   background:none;
-  color: #666;
+  color: ${white};
   margin-right: 1em;
-  &:hover {
-    color: ${white};
-  }
 `;
 
 export const SignUp = styled.button`
   ${headerButton}
   color: ${white};
-  background: ${primary};
+  background: none;
+  border: 2px solid ${primary};
   border-radius: 50px;
-  padding: 0.3rem 1.5rem;
+  padding: 0.2rem 1.5rem;
+&:hover{
+    background: ${primary};
+}
+
 `;
 
 export const AppButton = styled.button`
@@ -132,5 +135,23 @@ export const CloseButton = styled.button`
   }
   &:hover {
     cursor: pointer;
+  }
+`;
+
+export const TextButton = styled.div`
+  font-size: 0.8em;
+  text-align: center;
+  margin: 1rem;
+  display: flex;
+  p {
+    color: ${black};
+    margin-right: 0.2em;
+  }
+  span {
+    color: ${link};
+    cursor: default;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;

@@ -4,10 +4,10 @@ import { firebase } from "../../firebase";
 
 //assets
 import GoogleButton from "../buttons/GoogleButton";
-import { SignUpButton } from "../../elements";
-import { primary, white, error } from "../../utilities";
+import { SignUpButton, TextButton, Modal, ModalBG } from "../../elements";
+import { secondary, error, gray } from "../../utils";
 
-function SignUp(props) {
+function SignUp({ handleSignUp, handleLogin }) {
   const [password, setPassword] = useState();
   const [email, setEmail] = useState();
   const [authError, setAuthError] = useState(null);
@@ -26,7 +26,7 @@ function SignUp(props) {
     <Wrapper>
       <Modal>
         <GoogleButton />
-        <p>or</p>
+        <P>or</P>
         <FormStyled onSubmit={handleEmailSignUp}>
           {authError
             ? authError.code === "auth/invalid-email" && (
@@ -60,8 +60,13 @@ function SignUp(props) {
           />
           <SignUpButton type="submit">Create new Account</SignUpButton>
         </FormStyled>
+
+        <TextButton>
+          <p>Already have an account?</p>
+          <span onClick={handleLogin}>Log in</span>
+        </TextButton>
       </Modal>
-      <Dimmed onClick={props.handleClick} />
+      <ModalBG onClick={handleSignUp} />
     </Wrapper>
   );
 }
@@ -77,30 +82,6 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  p {
-    text-align: center;
-    padding: 1.5em;
-    margin: 0;
-  }
-`;
-
-const Modal = styled.div`
-  background: ${white};
-  z-index: 10;
-  padding: 2em;
-  max-width: 400px;
-  width: 100%;
-  border-radius: 5px;
-`;
-
-const Dimmed = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: -99;
 `;
 
 const FormStyled = styled.form`
@@ -108,7 +89,7 @@ const FormStyled = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  width: 100%;
   input {
     width: 100%;
     height: 60px;
@@ -116,10 +97,10 @@ const FormStyled = styled.form`
     padding-left: 0.8em;
     margin-bottom: 0.8em;
     border-radius: 3px;
-    border: 1px solid #d4d4d4;
+    border: 1px solid ${gray};
     outline: none;
     &:focus {
-      border: 1px solid ${primary};
+      border: 1px solid ${secondary};
     }
   }
 `;
@@ -131,4 +112,10 @@ const ErrorStyled = styled.label`
   width: 100%;
   font-size: 0.8em;
   padding-bottom: 0.8em;
+`;
+
+const P = styled.p`
+  text-align: center;
+  padding: 1.5em;
+  margin: 0;
 `;
