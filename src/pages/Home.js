@@ -12,7 +12,7 @@ import SignUp from "../components/modals/SignUp";
 //assets
 import { HeroButton } from "../elements";
 import KolrsVideo from "../components/images/Kolrs.mp4";
-import { white, black, mq } from "../utils";
+import { white, mq } from "../utils";
 
 function Home() {
   const [toggleSignUp, setToggleSignUp] = useState(false);
@@ -37,7 +37,6 @@ function Home() {
       {toggleLogin && (
         <Login handleSignUp={handleSignUp} handleLogin={handleLogin} />
       )}
-      {/* content */}
       <Content>
         <HeroText>
           <h1>A better way to create and save your color palettes.</h1>
@@ -58,7 +57,6 @@ export default Home;
 const Wrapper = styled.section`
   width: 100%;
   min-height: 100vh;
-  background: ${black};
   display: grid;
   grid-template-rows: auto 1fr auto;
 `;
@@ -68,7 +66,7 @@ const Content = styled.main`
   margin: 0 auto;
   max-width: 90%;
   align-items: center;
-  grid-auto-rows: 1fr 1fr;
+  grid-auto-rows: .8fr 1fr;
   grid-gap: 1em;
 
   ${mq[1]} {
@@ -76,8 +74,7 @@ const Content = styled.main`
   }
 
   ${mq[2]} {
-    grid-template-columns: 1fr 1.8fr;
-    grid-gap: 3em;
+    grid-gap: 5em;
     max-width: 1350px;
   }
 `;
@@ -109,9 +106,8 @@ const HeroText = styled.div`
     }
   }
   ${mq[2]} {
-    text-align: left;
     h1 {
-      font-size: 3.7vw;
+      font-size: 5em;
     }
   }
 `;
@@ -121,5 +117,6 @@ const VideoContent = styled.div`
   pointer-events: none;
   video {
     max-width: 100%;
+    border-radius: .5rem;
   }
 `;

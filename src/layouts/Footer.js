@@ -34,7 +34,7 @@ const FooterStyled = styled.footer`
   justify-content: center;
   font-size: 0.8em;
   color: #fff;
-  margin-bottom: 0.5rem;
+  margin: 1.5rem;
   span,
   a {
     margin: 0.5em;

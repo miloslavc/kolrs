@@ -27,3 +27,7 @@ a {
 h1 {
   font-weight: 500;
 }
+
+body {
+  background: #000;
+}

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import styled from "@emotion/styled";
 import { Router } from "@reach/router";
 import { UserContext } from "../context/UserContext";
 
@@ -12,7 +13,7 @@ import HeaderApp from "../layouts/HeaderApp";
 import Palettes from "../components/palettes/Palettes";
 import SelectedPalette from "../components/palettes/SelectedPalette";
 import NewPalette from "../components/palettes/NewPalette";
-// import Account from "./Account";
+import Account from "./Account";
 
 function Profile() {
   const { user } = useContext(UserContext);
@@ -36,16 +37,21 @@ function Profile() {
   }, [user, user.uid]);
 
   return (
-    <>
+    <Wrapper>
       <HeaderApp />
       <Router primary={false}>
         <Palettes path="/" palettes={palettes} />
         <SelectedPalette path="palette/:paletteId" />
         <NewPalette path="/new" palettes={palettes} />
-        {/* <Account path="account" /> */}
+        <Account path="account" />
       </Router>
-    </>
+    </Wrapper>
   );
 }
 
 export default Profile;
+
+const Wrapper = styled.main`
+background:#fff;
+min-height:100vh;
+`
