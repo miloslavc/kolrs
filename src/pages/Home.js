@@ -66,7 +66,7 @@ const Content = styled.main`
   margin: 0 auto;
   max-width: 90%;
   align-items: center;
-  grid-auto-rows: .8fr 1fr;
+  grid-auto-rows: 70vh 1fr;
   grid-gap: 1em;
 
   ${mq[1]} {
@@ -74,8 +74,8 @@ const Content = styled.main`
   }
 
   ${mq[2]} {
-    grid-gap: 5em;
-    max-width: 1350px;
+    grid-gap: 2em;
+    max-width: 80rem;
   }
 `;
 
@@ -107,7 +107,7 @@ const HeroText = styled.div`
   }
   ${mq[2]} {
     h1 {
-      font-size: 5em;
+      font-size: 4.5em;
     }
   }
 `;
@@ -115,6 +115,10 @@ const HeroText = styled.div`
 const VideoContent = styled.div`
   width: 100%;
   pointer-events: none;
+  display:grid;
+  place-items:center;
+  padding: 3rem;
+
   video {
     max-width: 100%;
     border-radius: .5rem;
