@@ -20,12 +20,12 @@ function Palettes({ palettes, handleOrder }) {
         <AddIcon />
         <div>
           <PreviewIcon preview={preview} setPreview={setPreview} />
-          {/* <OrderIcon order={order} setOrder={setOrder} /> */}
+          <OrderIcon order={order} setOrder={setOrder} />
         </div>
       </Header>
       <Content>
         {palettes.length > 0 &&
-          palettes.map((palette, index) => (
+          (order === false ? palettes : palettes.reverse()).map((palette, index) => (
             <PaletteCards
               key={palette.id}
               palette={palette}

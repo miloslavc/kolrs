@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "@emotion/styled";
 import { firebase } from "../../firebase";
-import { Redirect } from "@reach/router";
+import { Redirect, Link } from "@reach/router";
 
 function Menu() {
   const [redirect, setRedirect] = useState(false);
@@ -15,9 +15,9 @@ function Menu() {
     <Redirect to="/" />
   ) : (
     <MenuStyled>
-      {/* <LinkWrapper>
+      <LinkWrapper>
         <Link to="account">Account</Link>
-      </LinkWrapper> */}
+      </LinkWrapper>
       <Button onClick={handleSignOut}>Logout</Button>
     </MenuStyled>
   );
@@ -74,19 +74,19 @@ const Button = styled.button`
   }
 `;
 
-// const LinkWrapper = styled.div`
-//   a {
-//     border: none;
-//     padding: 0.5rem;
-//     outline: none;
-//     font-size: 1.125em;
-//     background: none;
-//     user-select: none;
-//     cursor: pointer;
-//     font-weight: 600;
-//     color: #666;
-//     &:hover {
-//       color: #141414;
-//     }
-//   }
-// `;
+const LinkWrapper = styled.div`
+  a {
+    border: none;
+    padding: 0.5rem;
+    outline: none;
+    font-size: 1.125em;
+    background: none;
+    user-select: none;
+    cursor: pointer;
+    font-weight: 600;
+    color: #666;
+    &:hover {
+      color: #141414;
+    }
+  }
+`;

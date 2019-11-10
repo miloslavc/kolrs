@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { css } from "@emotion/core";
 
 //mixins
-import { white, primary, black, mq, secondary, gray, link } from "../utils";
+import { white, primary, black, secondary, gray, link } from "../utils";
 
 //home
 export const HeroButton = styled.button`
@@ -18,9 +18,6 @@ export const HeroButton = styled.button`
   font-weight: 600;
   &:hover {
     cursor: pointer;
-  }
-  ${mq[2]} {
-    align-self: flex-start;
   }
 `;
 
