@@ -14,6 +14,7 @@ import Palettes from "../components/palettes/Palettes";
 import SelectedPalette from "../components/palettes/SelectedPalette";
 import NewPalette from "../components/palettes/NewPalette";
 import Account from "./Account";
+import Privacy from "./Privacy";
 
 function Profile() {
   const { user } = useContext(UserContext);
@@ -44,6 +45,7 @@ function Profile() {
         <SelectedPalette path="palette/:paletteId" />
         <NewPalette path="/new" palettes={palettes} />
         <Account path="account" />
+        <Privacy path="privacy-policy" />
       </Router>
     </Wrapper>
   );
