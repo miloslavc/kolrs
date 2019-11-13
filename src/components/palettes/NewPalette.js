@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
+import PropTypes from 'prop-types';
 import styled from "@emotion/styled";
 import { Redirect } from "@reach/router";
 import { capitalizeFirstLetter } from "../../helpers/helpers";
@@ -103,6 +104,11 @@ function NewPalette(props) {
 }
 
 export default NewPalette;
+
+NewPalette.propTypes = {
+  palettes: PropTypes.array.isRequired,
+  path:PropTypes.string.isRequired,
+}
 
 const Wrapper = styled.section`
   min-height: 100%;

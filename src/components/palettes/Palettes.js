@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 import styled from "@emotion/styled";
 import { Link } from "@reach/router";
 
@@ -48,6 +49,10 @@ function Palettes({ palettes, handleOrder }) {
 }
 
 export default Palettes;
+
+Palettes.propTypes = {
+  palettes: PropTypes.array.isRequired,
+}
 
 const Wrapper = styled.main`
   display: grid;

@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import styled from "@emotion/styled";
 
 //layouts
-import HeaderHome from "../layouts/HeaderHome";
-import Footer from "../layouts/Footer";
+import HeaderHome from "components/layouts/HeaderHome";
+import Footer from "components/layouts/Footer";
 
 //components
-import Login from "../components/modals/Login";
-import SignUp from "../components/modals/SignUp";
+import Login from "components/modals/Login";
+import SignUp from "components/modals/SignUp";
 
 //assets
-import { HeroButton } from "../elements";
-import KolrsVideo from "../components/images/Kolrs.mp4";
-import { white, mq } from "../utils";
+import { HeroButton } from "elements";
+import KolrsVideo from "components/images/Kolrs.mp4";
+import { white, mq } from "utils";
 
 function Home() {
   const [toggleSignUp, setToggleSignUp] = useState(false);
