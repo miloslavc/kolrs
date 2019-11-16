@@ -2,12 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import styled from "@emotion/styled";
 
 //assets
-import { Logo, MenuIcon } from "../elements";
-import { white, black } from "../utils";
+import { Logo, MenuIcon } from "../../elements";
+import { white, black } from "../../utils";
 
 //components
-import Avatar from "../components/user/Avatar";
-import Menu from "../components/user/Menu";
+import Avatar from "../user/Avatar";
+import Menu from "../user/Menu";
 
 function HeaderApp() {
   const [showMenu, setShowMenu] = useState(false);

@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "@emotion/styled";
 import { Router } from "@reach/router";
-import { UserContext } from "../context/UserContext";
+import { UserContext } from "context/UserContext";
 
 //api
-import { db } from "../firebase";
+import { db } from "../../firebase";
 
 //layout
-import HeaderApp from "../layouts/HeaderApp";
+import HeaderApp from "components/layouts/HeaderApp";
 
 //pages
-import Palettes from "../components/palettes/Palettes";
-import SelectedPalette from "../components/palettes/SelectedPalette";
-import NewPalette from "../components/palettes/NewPalette";
+import Palettes from "components/palettes/Palettes";
+import SelectedPalette from "components/palettes/SelectedPalette";
+import NewPalette from "components/palettes/NewPalette";
 import Account from "./Account";
 import Privacy from "./Privacy";
 

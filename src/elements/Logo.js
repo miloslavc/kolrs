@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { Link } from "@reach/router";
 
 //assets
-import logo from "../components/images/logo/logo_02.png";
+import logo from "assets/images/logo.png";
 
 export function Logo(props) {
   return (

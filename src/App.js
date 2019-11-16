@@ -5,8 +5,8 @@ import React from "react";
 import useAuth from "./api/useAuth";
 
 //pages
-import Home from "./pages/Home";
-import Profile from "./pages/Profile";
+import Home from "./pages/Home/Home";
+import Profile from "./pages/Profile/Profile";
 // import NotFound from "./pages/NotFound";
 
 //components

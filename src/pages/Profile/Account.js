@@ -1,12 +1,12 @@
 import React, { useState, useContext } from "react";
 import styled from "@emotion/styled";
-import { firebase } from "../firebase";
-import Avatar from "../components/user/Avatar";
+import { firebase } from "../../firebase";
+import Avatar from "components/user/Avatar";
 import { Redirect } from "@reach/router";
-import Footer from "../layouts/Footer";
-import { UserContext } from "../context/UserContext";
+import Footer from "components/layouts/Footer";
+import { UserContext } from "../../context/UserContext";
 
-function Account({ palettes }) {
+function Account() {
   const { user } = useContext(UserContext);
 
   const [email, setEmail] = useState(user.email);

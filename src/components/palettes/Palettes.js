@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from 'prop-types';
 import styled from "@emotion/styled";
 import { Link } from "@reach/router";
 
@@ -25,7 +26,7 @@ function Palettes({ palettes, handleOrder }) {
       </Header>
       <Content>
         {palettes.length > 0 &&
-          (order === false ? palettes : palettes.reverse()).map((palette, index) => (
+          (order === false ? palettes : palettes.slice().reverse()).map((palette, index) => (
             <PaletteCards
               key={palette.id}
               palette={palette}
@@ -48,6 +49,10 @@ function Palettes({ palettes, handleOrder }) {
 }
 
 export default Palettes;
+
+Palettes.propTypes = {
+  palettes: PropTypes.array.isRequired,
+}
 
 const Wrapper = styled.main`
   display: grid;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import PropTypes from 'prop-types';
 import styled from "@emotion/styled";
 import { UserContext } from "../../context/UserContext";
 
@@ -108,6 +109,10 @@ function SelectedPalette(props) {
 }
 
 export default SelectedPalette;
+
+SelectedPalette.propTypes = {
+  path: PropTypes.string.isRequired,
+}
 
 const Wrapper = styled.div`
   display: grid;
