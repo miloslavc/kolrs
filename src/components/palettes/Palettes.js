@@ -26,7 +26,7 @@ function Palettes({ palettes, handleOrder }) {
       </Header>
       <Content>
         {palettes.length > 0 &&
-          (order === false ? palettes : palettes.reverse()).map((palette, index) => (
+          (order === false ? palettes : palettes.slice().reverse()).map((palette, index) => (
             <PaletteCards
               key={palette.id}
               palette={palette}
