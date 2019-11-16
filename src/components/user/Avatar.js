@@ -4,7 +4,7 @@ import { UserContext } from "../../context/UserContext";
 
 //assets
 import { primary } from "../../utils";
-import robot from "../images/robot35x35.svg";
+import robot from "assets/icons/robot35x35.svg";
 
 function Avatar({ width, height }) {
   const { user } = useContext(UserContext);

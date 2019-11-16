@@ -11,7 +11,7 @@ import SignUp from "components/modals/SignUp";
 
 //assets
 import { HeroButton } from "elements";
-import KolrsVideo from "components/images/Kolrs.mp4";
+import KolrsVideo from "assets/video/Kolrs.mp4";
 import { white, mq } from "utils";
 
 function Home() {
