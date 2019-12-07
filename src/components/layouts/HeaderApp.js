@@ -1,13 +1,15 @@
-import React, { useState, useRef, useEffect } from "react";
-import styled from "@emotion/styled";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useState, useRef, useEffect } from 'react';
+import styled from '@emotion/styled';
 
-//assets
-import { Logo, MenuIcon } from "../../elements";
-import { white, black } from "../../utils";
+// assets
+import { Logo, MenuIcon } from '../../elements';
+import { white, black } from '../../utils';
 
-//components
-import Avatar from "../user/Avatar";
-import Menu from "../user/Menu";
+// components
+import Avatar from '../user/Avatar';
+import Menu from '../user/Menu';
 
 function HeaderApp() {
   const [showMenu, setShowMenu] = useState(false);
@@ -24,12 +26,12 @@ function HeaderApp() {
 
   useEffect(() => {
     if (showMenu) {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
     } else {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     }
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [showMenu]);
 

@@ -1,19 +1,18 @@
-import React, { useRef, useState, useEffect, useContext } from "react";
-import PropTypes from 'prop-types';
-import styled from "@emotion/styled";
-import { Redirect } from "@reach/router";
-import { capitalizeFirstLetter } from "../../helpers/helpers";
+import React, { useRef, useState, useEffect, useContext } from 'react';
+import styled from '@emotion/styled';
+import { Redirect } from '@reach/router';
+import { capitalizeFirstLetter } from '../../helpers/helpers';
 
-//api
-import { db } from "../../firebase";
+// api
+import { db } from '../../firebase';
 
-//context
-import { UserContext } from "../../context/UserContext";
+// context
+import { UserContext } from '../../context/UserContext';
 
-//components
-import AddColorCard from "../cards/AddColorCard";
+// components
+import AddColorCard from '../cards/AddColorCard';
 
-//assets
+// assets
 import {
   BackIcon,
   ExportImageIcon,
@@ -21,14 +20,14 @@ import {
   SaveIcon,
   CloseIcon,
   CloseButton,
-  AppButton
-} from "../../elements";
-import { black, white } from "../../utils";
+  AppButton,
+} from '../../elements';
+import { black, white } from '../../utils';
 
-function NewPalette(props) {
+function NewPalette() {
   const { user } = useContext(UserContext);
 
-  const [id, setID] = useState();
+  const [docId, setID] = useState();
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [shouldReturn, setShouldReturn] = useState(false);
 
@@ -41,17 +40,17 @@ function NewPalette(props) {
   const handleSubmit = e => {
     e.preventDefault();
     const name = capitalizeFirstLetter(paletteNameRef.current.value);
-    const id = name.toLowerCase().replace(/ +/g, "");
+    const id = name.toLowerCase().replace(/ +/g, '');
     const colors = [];
     const palette = {
       name,
       id,
       colors,
-      createdAt: new Date()
+      createdAt: new Date(),
     };
-    db.collection("users")
+    db.collection('users')
       .doc(`${user.uid}`)
-      .collection("palettes")
+      .collection('palettes')
       .doc(`${id}`)
       .set({ ...palette });
     setID(id);
@@ -59,13 +58,13 @@ function NewPalette(props) {
   };
 
   useEffect(() => {
-    if (id) {
+    if (docId) {
       setShouldRedirect(true);
     }
-  }, [id, shouldRedirect]);
+  }, [docId, shouldRedirect]);
 
   return shouldRedirect ? (
-    <Redirect from="/new" to={`palette/${id}`} noThrow />
+    <Redirect from="/new" to={`palette/${docId}`} noThrow />
   ) : (
     <Wrapper>
       <Header>
@@ -104,11 +103,6 @@ function NewPalette(props) {
 }
 
 export default NewPalette;
-
-NewPalette.propTypes = {
-  palettes: PropTypes.array.isRequired,
-  path:PropTypes.string.isRequired,
-}
 
 const Wrapper = styled.section`
   min-height: 100%;

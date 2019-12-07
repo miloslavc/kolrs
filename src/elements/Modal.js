@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import { white } from "../utils";
+import styled from '@emotion/styled';
+import { white } from '../utils';
 
 export const Modal = styled.div`
   background: ${white};

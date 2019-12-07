@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from "@emotion/styled";
-import { Link } from "@reach/router";
+import styled from '@emotion/styled';
+import { Link } from '@reach/router';
 
-//components
-import PaletteCards from "../cards/PaletteCards";
+// components
+import { FiPlus } from 'react-icons/fi';
+import PaletteCards from '../cards/PaletteCards';
 
-//assets
-import { AddIcon, PreviewIcon, OrderIcon } from "../../elements";
-import { FiPlus } from "react-icons/fi";
-import { black, blackText } from "../../utils";
+// assets
+import { AddIcon, PreviewIcon, OrderIcon } from '../../elements';
+import { black, blackText } from '../../utils';
 
-function Palettes({ palettes, handleOrder }) {
+function Palettes({ palettes }) {
   const [preview, setPreview] = useState(false);
   const [order, setOrder] = useState(false);
 
@@ -26,7 +26,10 @@ function Palettes({ palettes, handleOrder }) {
       </Header>
       <Content>
         {palettes.length > 0 &&
-          (order === false ? palettes : palettes.slice().reverse()).map((palette, index) => (
+          (order === false
+            ? palettes
+            : palettes.slice().reverse()
+          ).map((palette, index) => (
             <PaletteCards
               key={palette.id}
               palette={palette}
@@ -51,8 +54,8 @@ function Palettes({ palettes, handleOrder }) {
 export default Palettes;
 
 Palettes.propTypes = {
-  palettes: PropTypes.array.isRequired,
-}
+  palettes: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 const Wrapper = styled.main`
   display: grid;

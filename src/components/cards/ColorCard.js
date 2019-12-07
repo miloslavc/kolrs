@@ -1,37 +1,36 @@
-import React, { useState, useEffect, useContext } from "react";
-import styled from "@emotion/styled";
-import tinycolor from "tinycolor2";
-import { Redirect } from "@reach/router";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { UserContext } from "../../context/UserContext";
+import React, { useState, useEffect, useContext } from 'react';
+import styled from '@emotion/styled';
+import tinycolor from 'tinycolor2';
+import { Redirect } from '@reach/router';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { UserContext } from '../../context/UserContext';
 
-//components
-import DeleteButton from "../buttons/DeleteButton";
+// components
+import DeleteButton from '../buttons/DeleteButton';
 
-//api
-import { db, firebase } from "../../firebase";
+// api
+import { db, firebase } from '../../firebase';
 
-//assets
-import { Card, CardH1, CardH2, CardH3 } from "../../elements";
-import { blackText, white } from "../../utils";
+// assets
+import { Card, CardH1, CardH2, CardH3 } from '../../elements';
+import { blackText, white } from '../../utils';
 
-function ColorCard(props) {
+function ColorCard({ color, id, colorNumber }) {
   const { user } = useContext(UserContext);
 
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const [copied, setCopied] = useState(false);
 
-  //delete color or palette
+  // delete color or palette
   const handleDelete = () => {
-    const color = props.color;
     const data = db
-      .collection("users")
+      .collection('users')
       .doc(`${user.uid}`)
-      .collection("palettes")
-      .doc(`${props.id}`);
-    if (props.colorNumber > 1) {
+      .collection('palettes')
+      .doc(`${id}`);
+    if (colorNumber > 1) {
       data.update({
-        colors: firebase.firestore.FieldValue.arrayRemove(`${color}`)
+        colors: firebase.firestore.FieldValue.arrayRemove(`${color}`),
       });
     } else {
       data.delete();
@@ -43,21 +42,18 @@ function ColorCard(props) {
     if (copied === true) {
       setTimeout(() => setCopied(false), 1800);
     }
-  }, [copied, props.colorNumber]);
+  }, [copied, colorNumber]);
 
-  if (props.colorNumber > 0) {
-  }
-
-  //color converter
-  const rgb = tinycolor(props.color).toRgbString();
-  const hsl = tinycolor(props.color).toHslString();
-  const hex = props.color;
-  const color = tinycolor(props.color);
+  // color converter
+  const rgb = tinycolor(color).toRgbString();
+  const hsl = tinycolor(color).toHslString();
+  const hex = color;
+  const colorTransform = tinycolor(color);
 
   return shouldRedirect ? (
     <Redirect to="/" />
   ) : (
-    <Card color={props.color} textColor={color.isDark() ? white : blackText}>
+    <Card color={color} textColor={colorTransform.isDark() ? white : blackText}>
       <CopyToClipboard text={hex} onCopy={() => setCopied(true)}>
         <CardH1>{hex.toUpperCase()}</CardH1>
       </CopyToClipboard>
@@ -71,15 +67,15 @@ function ColorCard(props) {
       </CopyToClipboard>
       {copied && (
         <Copy
-          background={color.isDark() ? white : blackText}
-          color={props.color}
+          background={colorTransform.isDark() ? white : blackText}
+          color={color}
         >
           Copied
         </Copy>
       )}
       <Icons>
         <DeleteButton
-          textColor={color.isDark() ? white : blackText}
+          textColor={colorTransform.isDark() ? white : blackText}
           handleDelete={handleDelete}
         />
       </Icons>

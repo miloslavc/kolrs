@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
-import { firebase } from "../../firebase";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useState } from 'react';
+import styled from '@emotion/styled';
+import { firebase } from '../../firebase';
 
-//assets
-import GoogleButton from "../buttons/GoogleButton";
-import { LoginButton, TextButton, Modal, ModalBG } from "../../elements";
-import { error, gray, primary } from "../../utils";
+// assets
+import GoogleButton from '../buttons/GoogleButton';
+import { LoginButton, TextButton, Modal, ModalBG } from '../../elements';
+import { error, gray, primary } from '../../utils';
 
-//components
-import ResetPassword from "./ResetPassword";
+// components
+import ResetPassword from './ResetPassword';
 
 function Login({ handleSignUp, handleLogin }) {
   const [password, setPassword] = useState();
@@ -16,18 +18,18 @@ function Login({ handleSignUp, handleLogin }) {
   const [authError, setAuthError] = useState(null);
   const [toggleResetPassword, setToggleResetPassword] = useState(false);
 
-  //reset
+  // reset
   const handleResetToggle = () => {
     setToggleResetPassword(!toggleResetPassword);
   };
 
-  //email
+  // email
   const handleEmailSignIn = async e => {
     e.preventDefault();
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
-    } catch (error) {
-      setAuthError(error);
+    } catch (errorMsg) {
+      setAuthError(errorMsg);
     }
   };
 
@@ -41,7 +43,7 @@ function Login({ handleSignUp, handleLogin }) {
           <P>or</P>
           <FormStyled onSubmit={handleEmailSignIn}>
             {authError
-              ? authError.code === "auth/user-not-found" && (
+              ? authError.code === 'auth/user-not-found' && (
                   <ErrorStyled>Incorrect email</ErrorStyled>
                 )
               : null}
@@ -55,7 +57,7 @@ function Login({ handleSignUp, handleLogin }) {
               required
             />
             {authError
-              ? authError.code === "auth/wrong-password" && (
+              ? authError.code === 'auth/wrong-password' && (
                   <ErrorStyled>Incorrect password</ErrorStyled>
                 )
               : null}

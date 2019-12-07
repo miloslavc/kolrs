@@ -1,41 +1,41 @@
-import React, { useState, useEffect, useContext } from "react";
-import PropTypes from 'prop-types';
-import styled from "@emotion/styled";
-import { UserContext } from "../../context/UserContext";
+/* eslint-disable func-names */
+import React, { useState, useEffect, useContext } from 'react';
+import styled from '@emotion/styled';
+import html2canvas from 'html2canvas';
+import { UserContext } from '../../context/UserContext';
 
-//api
-import { db } from "../../firebase";
+// api
+import { db } from '../../firebase';
 
-//components
-import ColorCard from "../cards/ColorCard";
-import AddColorCard from "../cards/AddColorCard";
-import PaletteImage from "../../helpers/PaletteImage";
+// components
+import ColorCard from '../cards/ColorCard';
+import AddColorCard from '../cards/AddColorCard';
+import PaletteImage from '../../helpers/PaletteImage';
 
 // import ExportButton from "../buttons/ExportButton";
-import html2canvas from "html2canvas";
 
-//assets
-import { BackIcon, ExportImageIcon, ExportImageScss } from "../../elements";
-import { black } from "../../utils";
+// assets
+import { BackIcon, ExportImageIcon, ExportImageScss } from '../../elements';
+import { black } from '../../utils';
 
-function SelectedPalette(props) {
+function SelectedPalette({ paletteId }) {
   const { user } = useContext(UserContext);
   const [palette, setPalette] = useState(null);
   const [update, setUpdate] = useState(false);
   const [numberOfColors, setNumberOfColors] = useState();
   const [exportImage, setExportImage] = useState(false);
 
-  //get selected project data from firebase and put it to state
+  // get selected project data from firebase and put it to state
   useEffect(() => {
     return db
-      .collection("users")
+      .collection('users')
       .doc(`${user.uid}`)
-      .collection("palettes")
-      .doc(`${props.paletteId}`)
+      .collection('palettes')
+      .doc(`${paletteId}`)
       .onSnapshot(
         {
           // Listen for document metadata changes
-          includeMetadataChanges: true
+          includeMetadataChanges: true,
         },
         function(doc) {
           setPalette(doc.data());
@@ -43,31 +43,30 @@ function SelectedPalette(props) {
             setUpdate(true);
             setNumberOfColors(doc.data().colors.length);
           }
-        }
+        },
       );
-  }, [props.paletteId, user.uid]);
+  }, [paletteId, user.uid]);
 
-  //export palettes as png image
+  // export palettes as png image
   const handlePNG = () => {
     setExportImage(true);
-    console.log("click");
+    console.log('click');
   };
 
   // issue with loading module - to be fixed
   useEffect(() => {
     if (exportImage === true) {
-      html2canvas(document.querySelector("#capture")).then(canvas => {
+      html2canvas(document.querySelector('#capture')).then(canvas => {
         const image = canvas
-          .toDataURL("image/png")
-          .replace("image/png", "image/octet-stream");
-        const link = document.createElement("a");
-        link.download = "palette.png";
+          .toDataURL('image/png')
+          .replace('image/png', 'image/octet-stream');
+        const link = document.createElement('a');
+        link.download = 'palette.png';
         link.href = image;
         link.click();
         setExportImage(false);
       });
     }
-    return;
   }, [exportImage]);
 
   return (
@@ -81,16 +80,13 @@ function SelectedPalette(props) {
         </div>
       </Header>
       <Content>
-        <AddColorCard
-          paletteId={props.paletteId}
-          name={palette && palette.name}
-        />
+        <AddColorCard paletteId={paletteId} name={palette && palette.name} />
         {update &&
           palette.colors.map((color, index) => (
             <ColorCard
               key={color}
               color={color}
-              id={props.paletteId}
+              id={paletteId}
               colorNumber={numberOfColors}
               index={index}
             >
@@ -109,10 +105,6 @@ function SelectedPalette(props) {
 }
 
 export default SelectedPalette;
-
-SelectedPalette.propTypes = {
-  path: PropTypes.string.isRequired,
-}
 
 const Wrapper = styled.div`
   display: grid;

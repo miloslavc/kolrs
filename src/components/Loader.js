@@ -1,9 +1,9 @@
-import React from "react";
-import Lottie from "react-lottie";
-import data from "../components/images/data.json";
-import styled from "@emotion/styled";
+import React from 'react';
+import Lottie from 'react-lottie';
+import styled from '@emotion/styled';
+import data from './images/data.json';
 
-import { black } from "../utils";
+import { black } from '../utils';
 
 function Loader() {
   const defaultOptions = {
@@ -11,8 +11,8 @@ function Loader() {
     autoplay: true,
     animationData: data,
     rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
+      preserveAspectRatio: 'xMidYMid slice',
+    },
   };
 
   return (

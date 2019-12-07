@@ -1,12 +1,47 @@
-import React from "react";
-import { CustomPicker } from "react-color";
-import styled from "@emotion/styled";
+/* eslint-disable no-unused-expressions */
+import React from 'react';
+import { CustomPicker } from 'react-color';
+import styled from '@emotion/styled';
 import {
   EditableInput,
   Hue,
-  Saturation
-} from "react-color/lib/components/common";
-import color from "react-color/lib/helpers/color";
+  Saturation,
+} from 'react-color/lib/components/common';
+import color from 'react-color/lib/helpers/color';
+
+// custom pointer
+const MyPointer = () => {
+  return (
+    <div
+      style={{
+        transform: 'translate(-50%, -50%)',
+        height: '22px',
+        width: '22px',
+        border: '3px solid #fff',
+        borderRadius: '50%',
+        cursor: 'pointer',
+        filter: 'drop-shadow(0 0 5px #ACACAC)',
+      }}
+    />
+  );
+};
+// custom hue pointer
+const MyHuePointer = () => {
+  return (
+    <div
+      style={{
+        height: '17px',
+        width: '17px',
+        borderRadius: '50%',
+        cursor: 'pointer',
+        filter: 'drop-shadow(0 0 2px #ACACAC)',
+        background: '#fff',
+        transform: 'translate(-11px,-1px)',
+        position: 'absolute',
+      }}
+    />
+  );
+};
 
 export const MyPicker = ({ rgb, hex, hsl, hsv, onChange, handleUpdate }) => {
   const handleChangeHex = (hexCode, e) => {
@@ -14,9 +49,9 @@ export const MyPicker = ({ rgb, hex, hsl, hsv, onChange, handleUpdate }) => {
       onChange(
         {
           hex: hexCode,
-          source: "hex"
+          source: 'hex',
         },
-        e
+        e,
       );
   };
 
@@ -27,9 +62,9 @@ export const MyPicker = ({ rgb, hex, hsl, hsv, onChange, handleUpdate }) => {
           r: data.r || rgb.r,
           g: data.g || rgb.g,
           b: data.b || rgb.b,
-          source: "rgb"
+          source: 'rgb',
         },
-        e
+        e,
       );
     }
   };
@@ -37,50 +72,50 @@ export const MyPicker = ({ rgb, hex, hsl, hsv, onChange, handleUpdate }) => {
   const styles = {
     hue: {
       height: 15,
-      position: "relative",
-      width: "100%",
-      marginBottom: "5px",
-      borderRadius: "3px"
+      position: 'relative',
+      width: '100%',
+      marginBottom: '5px',
+      borderRadius: '3px',
     },
     saturation: {
-      height: "200px",
-      position: "relative",
-      width: "100%",
-      borderRadius: "3px"
+      height: '200px',
+      position: 'relative',
+      width: '100%',
+      borderRadius: '3px',
     },
     input: {
       height: 35,
-      border: "none",
+      border: 'none',
       borderBottom: `2px solid ${hex}`,
-      width: "90%",
-      textAlign: "center",
-      outline: "none",
-      background: "#000",
-      fontSize: "1.2em",
-      margin: "0 auto",
-      marginBottom: "10px",
-      color: "#fff",
-      display: "block"
+      width: '90%',
+      textAlign: 'center',
+      outline: 'none',
+      background: '#000',
+      fontSize: '1.2em',
+      margin: '0 auto',
+      marginBottom: '10px',
+      color: '#fff',
+      display: 'block',
     },
     label: {
-      fontSize: "0.8em",
-      color: "#666"
+      fontSize: '0.8em',
+      color: '#666',
     },
     rgb: {
       height: 20,
-      width: "100%",
-      border: "none",
-      textAlign: "center",
-      outline: "none",
-      background: "#000",
-      fontSize: "0.9em",
-      color: "#fff",
-      display: "block"
+      width: '100%',
+      border: 'none',
+      textAlign: 'center',
+      outline: 'none',
+      background: '#000',
+      fontSize: '0.9em',
+      color: '#fff',
+      display: 'block',
     },
     single: {
-      textAlign: "center",
-      textTransform: "uppercase"
-    }
+      textAlign: 'center',
+      textTransform: 'uppercase',
+    },
   };
 
   return (
@@ -170,37 +205,3 @@ const StyledButton = styled.button`
     cursor: pointer;
   }
 `;
-
-//custom pointer
-const MyPointer = () => {
-  return (
-    <div
-      style={{
-        transform: "translate(-50%, -50%)",
-        height: "22px",
-        width: "22px",
-        border: "3px solid #fff",
-        borderRadius: "50%",
-        cursor: "pointer",
-        filter: "drop-shadow(0 0 5px #ACACAC)"
-      }}
-    />
-  );
-};
-//custom hue pointer
-const MyHuePointer = () => {
-  return (
-    <div
-      style={{
-        height: "17px",
-        width: "17px",
-        borderRadius: "50%",
-        cursor: "pointer",
-        filter: "drop-shadow(0 0 2px #ACACAC)",
-        background: "#fff",
-        transform: "translate(-11px,-1px)",
-        position: "absolute"
-      }}
-    />
-  );
-};

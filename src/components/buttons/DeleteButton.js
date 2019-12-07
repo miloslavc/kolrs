@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
+import React, { useState } from 'react';
+import styled from '@emotion/styled';
 
-//assets
-import { FiX, FiCheck } from "react-icons/fi";
-import { blackText, white } from "../../utils";
+// assets
+import { FiX, FiCheck } from 'react-icons/fi';
+import { blackText, white } from '../../utils';
 
 function DeleteButton({ handleDelete, textColor }) {
   const [showDelete, setShowDelete] = useState(false);
@@ -12,7 +12,6 @@ function DeleteButton({ handleDelete, textColor }) {
     if (showDelete) {
       setShowDelete(false);
     }
-    return;
   };
 
   return (
@@ -62,7 +61,7 @@ color: ${({ textColor }) => (textColor === white ? blackText : white)}
 `;
 
 const DeleteContainer = styled(IconContainer)`
-  width: ${({ showDelete }) => (showDelete ? "80px" : "40px")};
+  width: ${({ showDelete }) => (showDelete ? '80px' : '40px')};
 `;
 
 const IconWrapper = styled.span`

@@ -1,15 +1,16 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { Link } from "@reach/router";
+/* eslint-disable import/prefer-default-export */
+import React from 'react';
+import styled from '@emotion/styled';
+import { Link } from '@reach/router';
 
-//assets
-import logo from "assets/images/logo.png";
+// assets
+import logo from 'assets/images/logo.png';
 
-export function Logo(props) {
+export function Logo({ color }) {
   return (
     <LogoWrapper>
       <Link to="/">
-        <LogoButton color={props.color}>
+        <LogoButton color={color}>
           <img src={logo} alt="Kolrs" />
           <p>KOLRS</p>
         </LogoButton>

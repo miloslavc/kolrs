@@ -1,20 +1,20 @@
-import React, { useState, useEffect, useContext } from "react";
-import styled from "@emotion/styled";
-import { Router } from "@reach/router";
-import { UserContext } from "context/UserContext";
+import React, { useState, useEffect, useContext } from 'react';
+import styled from '@emotion/styled';
+import { Router } from '@reach/router';
+import { UserContext } from 'context/UserContext';
 
-//api
-import { db } from "../../firebase";
+// api
 
-//layout
-import HeaderApp from "components/layouts/HeaderApp";
+// layout
+import HeaderApp from 'components/layouts/HeaderApp';
 
-//pages
-import Palettes from "components/palettes/Palettes";
-import SelectedPalette from "components/palettes/SelectedPalette";
-import NewPalette from "components/palettes/NewPalette";
-import Account from "./Account";
-import Privacy from "./Privacy";
+// pages
+import Palettes from 'components/palettes/Palettes';
+import SelectedPalette from 'components/palettes/SelectedPalette';
+import NewPalette from 'components/palettes/NewPalette';
+import { db } from '../../firebase';
+import Account from './Account';
+import Privacy from './Privacy';
 
 function Profile() {
   const { user } = useContext(UserContext);
@@ -22,15 +22,15 @@ function Profile() {
 
   useEffect(() => {
     return db
-      .collection("users")
+      .collection('users')
       .doc(`${user.uid}`)
-      .collection("palettes")
-      .orderBy("createdAt", "desc")
+      .collection('palettes')
+      .orderBy('createdAt', 'desc')
       .onSnapshot(snapshot => {
         const docs = [];
         snapshot.forEach(doc => {
           docs.push({
-            ...doc.data()
+            ...doc.data(),
           });
         });
         setPalettes(docs);
@@ -43,7 +43,7 @@ function Profile() {
       <Router primary={false}>
         <Palettes path="/" palettes={palettes} />
         <SelectedPalette path="palette/:paletteId" />
-        <NewPalette path="/new" palettes={palettes} />
+        <NewPalette path="/new" />
         <Account path="account" />
         <Privacy path="privacy-policy" />
       </Router>
@@ -54,6 +54,6 @@ function Profile() {
 export default Profile;
 
 const Wrapper = styled.main`
-background:#fff;
-min-height:100vh;
-`
+  background: #fff;
+  min-height: 100vh;
+`;

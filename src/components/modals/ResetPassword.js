@@ -1,22 +1,24 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
-import { firebase } from "../../firebase";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useState } from 'react';
+import styled from '@emotion/styled';
+import { firebase } from '../../firebase';
 
-//assets
-import { LoginButton, TextButton } from "../../elements";
-import { white, error, gray } from "../../utils";
+// assets
+import { LoginButton, TextButton } from '../../elements';
+import { white, error, gray } from '../../utils';
 
 function ResetPassword({ handleResetToggle }) {
   const [authError, setAuthError] = useState(null);
   const [email, setEmail] = useState();
 
-  //reset
+  // reset
   const handlePasswordReset = async e => {
     e.preventDefault();
     try {
       await firebase.auth().sendPasswordResetEmail(email);
-    } catch (error) {
-      setAuthError(error);
+    } catch (errorMsg) {
+      setAuthError(errorMsg);
     }
   };
 
@@ -25,7 +27,7 @@ function ResetPassword({ handleResetToggle }) {
       <Title>Need a link to reset your password?</Title>
       <FormStyled onSubmit={handlePasswordReset}>
         {authError
-          ? authError.code === "auth/user-not-found" && (
+          ? authError.code === 'auth/user-not-found' && (
               <ErrorStyled>
                 There is no user record corresponding to this email.
               </ErrorStyled>
