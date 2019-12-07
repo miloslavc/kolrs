@@ -1,14 +1,14 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
 
-function PaletteColorPreview(props) {
+function PaletteColorPreview({ colors, handleBackground }) {
   return (
     <Wrapper>
-      {props.colors.slice(1).map(color => (
+      {colors.slice(1).map(color => (
         <Color
           key={color}
           color={color}
-          onClick={() => props.handleBackground(color)}
+          onClick={() => handleBackground(color)}
         />
       ))}
     </Wrapper>

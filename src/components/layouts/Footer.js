@@ -1,19 +1,19 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
 
-//assets
-import { primary } from "../../utils";
+// assets
+import { primary } from '../../utils';
 
 function Footer() {
   return (
     <FooterStyled>
       <p>
-        {" "}
+        {' '}
         &copy; {new Date().getFullYear()}. All rights received. Made with
         <span role="img" aria-label="Heart">
           ♥
         </span>
-        by{" "}
+        by{' '}
         <a
           target="_blank"
           rel="noopener noreferrer"

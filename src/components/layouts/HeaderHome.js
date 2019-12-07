@@ -1,9 +1,9 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
 
-//assets
-import { SignIn, SignUp, Logo } from "elements";
-import { white } from "utils";
+// assets
+import { white } from 'utils';
+import { Logo, SignIn, SignUp } from '../../elements';
 
 function HeaderHome({ signUp, login }) {
   return (

@@ -1,18 +1,19 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
+/* eslint-disable jsx-a11y/media-has-caption */
+import React, { useState } from 'react';
+import styled from '@emotion/styled';
 
-//layouts
-import HeaderHome from "components/layouts/HeaderHome";
-import Footer from "components/layouts/Footer";
+// layouts
+import HeaderHome from 'components/layouts/HeaderHome';
+import Footer from 'components/layouts/Footer';
 
-//components
-import Login from "components/modals/Login";
-import SignUp from "components/modals/SignUp";
+// components
+import Login from 'components/modals/Login';
+import SignUp from 'components/modals/SignUp';
 
-//assets
-import { HeroButton } from "elements";
-import KolrsVideo from "assets/video/Kolrs.mp4";
-import { white, mq } from "utils";
+// assets
+import { HeroButton } from 'elements';
+import KolrsVideo from 'assets/video/Kolrs.mp4';
+import { white, mq } from 'utils';
 
 function Home() {
   const [toggleSignUp, setToggleSignUp] = useState(false);
@@ -44,7 +45,7 @@ function Home() {
           <HeroButton onClick={handleSignUp}>Try Kolrs for free</HeroButton>
         </HeroText>
         <VideoContent>
-          <video src={KolrsVideo} preload="auto" autoplay="" muted="" loop="" />
+          <video src={KolrsVideo} preload="auto" autoPlay="" muted="" loop="" />
         </VideoContent>
       </Content>
       <Footer />
@@ -115,12 +116,12 @@ const HeroText = styled.div`
 const VideoContent = styled.div`
   width: 100%;
   pointer-events: none;
-  display:grid;
-  place-items:center;
+  display: grid;
+  place-items: center;
   padding: 3rem;
 
   video {
     max-width: 100%;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
   }
 `;

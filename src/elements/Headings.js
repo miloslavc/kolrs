@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 // import { css } from "@emotion/core";
 
 export const CardH1 = styled.h1`
@@ -6,7 +6,7 @@ export const CardH1 = styled.h1`
   font-weight: 500;
   cursor: pointer;
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     width: 50px;
     border-top: 3px solid ${props => props.textColor};

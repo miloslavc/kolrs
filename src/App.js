@@ -1,17 +1,18 @@
-import React from "react";
+/* eslint-disable no-nested-ternary */
+import React from 'react';
 // import { Router } from "@reach/router";
 
-//api
-import useAuth from "./api/useAuth";
+// api
+import useAuth from './api/useAuth';
 
-//pages
-import Home from "./pages/Home/Home";
-import Profile from "./pages/Profile/Profile";
+// pages
+import Home from './pages/Home/Home';
+import Profile from './pages/Profile/Profile';
 // import NotFound from "./pages/NotFound";
 
-//components
-import Loader from "./components/Loader";
-import { UserContext } from "./context/UserContext";
+// components
+import Loader from './components/Loader';
+import { UserContext } from './context/UserContext';
 
 function App() {
   const { loading, user } = useAuth();
@@ -23,7 +24,7 @@ function App() {
   ) : (
     <UserContext.Provider
       value={{
-        user
+        user,
       }}
     >
       <Profile />

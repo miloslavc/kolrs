@@ -1,7 +1,8 @@
-import styled from "@emotion/styled";
+/* eslint-disable import/prefer-default-export */
+import styled from '@emotion/styled';
 
-//assets
-import { CardShadow } from "../utils";
+// assets
+import { CardShadow } from '../utils';
 
 export const Card = styled.div`
   width: 100%;

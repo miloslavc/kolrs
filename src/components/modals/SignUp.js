@@ -1,24 +1,26 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
-import { firebase } from "../../firebase";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import React, { useState } from 'react';
+import styled from '@emotion/styled';
+import { firebase } from '../../firebase';
 
-//assets
-import GoogleButton from "../buttons/GoogleButton";
-import { SignUpButton, TextButton, Modal, ModalBG } from "../../elements";
-import { secondary, error, gray } from "../../utils";
+// assets
+import GoogleButton from '../buttons/GoogleButton';
+import { SignUpButton, TextButton, Modal, ModalBG } from '../../elements';
+import { secondary, error, gray } from '../../utils';
 
 function SignUp({ handleSignUp, handleLogin }) {
   const [password, setPassword] = useState();
   const [email, setEmail] = useState();
   const [authError, setAuthError] = useState(null);
 
-  //email
+  // email
   const handleEmailSignUp = async e => {
     e.preventDefault();
     try {
       await firebase.auth().createUserWithEmailAndPassword(email, password);
-    } catch (error) {
-      setAuthError(error);
+    } catch (errorMsg) {
+      setAuthError(errorMsg);
     }
   };
 
@@ -29,7 +31,7 @@ function SignUp({ handleSignUp, handleLogin }) {
         <P>or</P>
         <FormStyled onSubmit={handleEmailSignUp}>
           {authError
-            ? authError.code === "auth/invalid-email" && (
+            ? authError.code === 'auth/invalid-email' && (
                 <ErrorStyled>Incorrect email</ErrorStyled>
               )
             : null}
@@ -43,7 +45,7 @@ function SignUp({ handleSignUp, handleLogin }) {
             required
           />
           {authError
-            ? authError.code === "auth/weak-password" && (
+            ? authError.code === 'auth/weak-password' && (
                 <ErrorStyled>
                   Password should be at least 6 characters
                 </ErrorStyled>

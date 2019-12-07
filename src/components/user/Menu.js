@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
-import { firebase } from "../../firebase";
-import { Redirect, Link } from "@reach/router";
+import React, { useState } from 'react';
+import styled from '@emotion/styled';
+import { Redirect, Link } from '@reach/router';
+import { firebase } from '../../firebase';
 
 function Menu() {
   const [redirect, setRedirect] = useState(false);
@@ -37,7 +37,7 @@ const MenuStyled = styled.div`
   box-shadow: rgba(118, 118, 118, 0.2) 0 0 0 1px, rgba(0, 0, 0, 0.05) 0 2px 5px;
   z-index: 59;
   &::before {
-    content: "";
+    content: '';
     height: 20px;
     width: 20px;
     background: #000;
@@ -48,7 +48,7 @@ const MenuStyled = styled.div`
     margin-left: 1em;
   }
   &::after {
-    content: "";
+    content: '';
     height: 20px;
     width: 20px;
     background: #fff;

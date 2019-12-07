@@ -1,12 +1,8 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { Link } from "@reach/router";
+import React from 'react';
+import styled from '@emotion/styled';
+import { Link } from '@reach/router';
 
-//assets
-import { blackText, white, mq } from "../utils";
-import { downloadSCSS } from "../helpers/helpers";
-
-//icons
+// assets
 import {
   FiPlus,
   FiEye,
@@ -19,15 +15,19 @@ import {
   FiCamera,
   FiSave,
   FiX,
-  FiMenu
-} from "react-icons/fi";
+  FiMenu,
+} from 'react-icons/fi';
+import { blackText, white, mq } from '../utils';
+import { downloadSCSS } from '../helpers/helpers';
+
+// icons
 
 export const IconWrapper = styled.span`
   display: grid;
   align-items: center;
   justify-items: center;
   font-size: 1.125em;
-  color: ${({ color }) => (color ? color : blackText)};
+  color: ${({ color }) => color || blackText};
   padding: 0 0.5rem;
   grid-auto-columns: auto 1fr;
   grid-gap: 10px;

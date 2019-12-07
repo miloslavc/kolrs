@@ -1,10 +1,13 @@
-import React, { useState, useContext } from "react";
-import styled from "@emotion/styled";
-import { firebase } from "../../firebase";
-import Avatar from "components/user/Avatar";
-import { Redirect } from "@reach/router";
-import Footer from "components/layouts/Footer";
-import { UserContext } from "../../context/UserContext";
+/* eslint-disable func-names */
+/* eslint-disable jsx-a11y/label-has-for */
+/* eslint-disable jsx-a11y/label-has-associated-control */
+import React, { useState, useContext } from 'react';
+import styled from '@emotion/styled';
+import Avatar from 'components/user/Avatar';
+import { Redirect } from '@reach/router';
+import Footer from 'components/layouts/Footer';
+import { firebase } from '../../firebase';
+import { UserContext } from '../../context/UserContext';
 
 function Account() {
   const { user } = useContext(UserContext);
@@ -15,10 +18,10 @@ function Account() {
   console.log(user);
 
   const handleDelete = () => {
-    const user = firebase.auth().currentUser;
+    const activeUser = firebase.auth().currentUser;
     const credential = firebase.auth.EmailAuthProvider.credential(
-      user.email,
-      "miloslav"
+      activeUser.email,
+      'miloslav',
     );
 
     user
@@ -27,7 +30,8 @@ function Account() {
         user.delete();
       })
       .catch(function(error) {
-        console.log("An error happened.");
+        console.log('An error happened.');
+        console.log(error);
       });
     setRedirect(true);
   };

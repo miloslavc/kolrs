@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { firebase } from "../../firebase";
-import styled from "@emotion/styled";
+import React, { useState } from 'react';
+import styled from '@emotion/styled';
+import { firebase } from '../../firebase';
 
-//assets
-import { GoogleSignInButton } from "../../elements";
+// assets
+import { GoogleSignInButton } from '../../elements';
 
 function GoogleButton() {
   const [authError, setAuthError] = useState(null);
 
-  //google
+  // google
   const handleSignIn = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     try {

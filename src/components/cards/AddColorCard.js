@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useContext } from "react";
-import styled from "@emotion/styled";
-import { db, firebase } from "../../firebase";
-import MyPicker from "../../helpers/MyPicker";
-import tinycolor from "tinycolor2";
-import { UserContext } from "../../context/UserContext";
+import React, { useState, useEffect, useContext } from 'react';
+import styled from '@emotion/styled';
+import tinycolor from 'tinycolor2';
+import { FiPlus } from 'react-icons/fi';
+import { db, firebase } from '../../firebase';
+// eslint-disable-next-line import/no-named-as-default
+import MyPicker from '../../helpers/MyPicker';
+import { UserContext } from '../../context/UserContext';
 
-//assets
-import { CardShadow, white, blackText, black } from "../../utils";
-import { FiPlus } from "react-icons/fi";
+// assets
+import { CardShadow, white, blackText, black } from '../../utils';
 
 function AddColorCard(props) {
   const { user } = useContext(UserContext);
@@ -15,26 +16,27 @@ function AddColorCard(props) {
   const [move, setMove] = useState(false);
   const [saved, setSaved] = useState(false);
 
-  //save selected color in state
+  // save selected color in state
+  // eslint-disable-next-line no-shadow
   const handleChange = color => {
     setColor(color.hex);
   };
 
-  //upload new item to the doc
+  // upload new item to the doc
   const handleUpdate = () => {
     const selectedColor = color;
     setSaved(true);
     const data = db
-      .collection("users")
+      .collection('users')
       .doc(`${user.uid}`)
-      .collection("palettes")
+      .collection('palettes')
       .doc(`${props.paletteId}`);
     data.update({
-      colors: firebase.firestore.FieldValue.arrayUnion(`${selectedColor}`)
+      colors: firebase.firestore.FieldValue.arrayUnion(`${selectedColor}`),
     });
   };
 
-  //show confirmation when color is saved
+  // show confirmation when color is saved
   useEffect(() => {
     if (saved === true) {
       setTimeout(() => setSaved(false), 1800);

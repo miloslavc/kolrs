@@ -1,26 +1,24 @@
-import React, { useState, useContext } from "react";
-import styled from "@emotion/styled";
-import { Link } from "@reach/router";
-import tinycolor from "tinycolor2";
-import { UserContext } from "../../context/UserContext";
+import React, { useState, useContext } from 'react';
+import styled from '@emotion/styled';
+import { Link } from '@reach/router';
+import tinycolor from 'tinycolor2';
+import { UserContext } from '../../context/UserContext';
 
-//api
-import { db } from "../../firebase";
+// api
+import { db } from '../../firebase';
 
-//components
-import PaletteColorPreview from "./PaletteColorPreview";
-import DeleteButton from "../buttons/DeleteButton";
-import ExportButton from "../buttons/ExportButton";
+// components
+import PaletteColorPreview from './PaletteColorPreview';
+import DeleteButton from '../buttons/DeleteButton';
+import ExportButton from '../buttons/ExportButton';
 
-//assets
-import { Card, CardH1 } from "../../elements";
-import { blackText, white } from "../../utils";
+// assets
+import { Card, CardH1 } from '../../elements';
+import { blackText, white } from '../../utils';
 
-function PaletteCards(props) {
+function PaletteCards({ palette, id, preview }) {
   const { user } = useContext(UserContext);
-  const [backgroundColor, setBackgroundColor] = useState(
-    props.palette.colors[0]
-  );
+  const [backgroundColor, setBackgroundColor] = useState(palette.colors[0]);
 
   const handleBackground = color => {
     setBackgroundColor(color);
@@ -28,10 +26,10 @@ function PaletteCards(props) {
 
   const handleDelete = () => {
     const data = db
-      .collection("users")
+      .collection('users')
       .doc(`${user.uid}`)
-      .collection("palettes")
-      .doc(`${props.id}`);
+      .collection('palettes')
+      .doc(`${id}`);
     data.delete();
   };
 
@@ -40,17 +38,15 @@ function PaletteCards(props) {
 
   return (
     <Wrapper>
-      <Link to={`palette/${props.palette.id}`}>
+      <Link to={`palette/${palette.id}`}>
         <Card
-          color={
-            props.palette.colors.length !== 0 ? backgroundColor : blackText
-          }
+          color={palette.colors.length !== 0 ? backgroundColor : blackText}
           textColor={textColor}
         >
-          <CardH1>{props.palette.name}</CardH1>
-          {props.preview && (
+          <CardH1>{palette.name}</CardH1>
+          {preview && (
             <PaletteColorPreview
-              colors={props.palette.colors}
+              colors={palette.colors}
               handleBackground={handleBackground}
             />
           )}
@@ -60,7 +56,7 @@ function PaletteCards(props) {
         <ExportButton
           textColor={textColor}
           handleDelete={handleDelete}
-          colors={props.palette.colors}
+          colors={palette.colors}
         />
         <DeleteButton textColor={textColor} handleDelete={handleDelete} />
       </Icons>

@@ -1,19 +1,18 @@
-import React, { useState } from "react";
-import styled from "@emotion/styled";
-import { downloadSCSS } from "../../helpers/helpers";
+import React, { useState } from 'react';
+import styled from '@emotion/styled';
+import { FiShare2, FiTerminal, FiImage } from 'react-icons/fi';
+import { downloadSCSS } from '../../helpers/helpers';
 
-//assets
-import { FiShare2, FiTerminal, FiImage } from "react-icons/fi";
-import { blackText, white } from "../../utils";
+// assets
+import { blackText, white } from '../../utils';
 
-function ExportButton({ handleDelete, textColor, colors }) {
+function ExportButton({ textColor, colors }) {
   const [showExport, setShowExport] = useState(false);
 
   const handleLeave = () => {
     if (showExport) {
       setShowExport(false);
     }
-    return;
   };
 
   return (
@@ -60,7 +59,7 @@ const IconContainer = styled.div`
 `;
 
 const ExportContainer = styled(IconContainer)`
-  width: ${({ showExport }) => (showExport ? "120px" : "40px")};
+  width: ${({ showExport }) => (showExport ? '120px' : '40px')};
 `;
 
 const IconWrapper = styled.span`

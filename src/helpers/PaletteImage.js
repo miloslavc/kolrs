@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "@emotion/styled";
-import logo from "assets/images/logo.png";
-import tinycolor from "tinycolor2";
+import React from 'react';
+import styled from '@emotion/styled';
+import logo from 'assets/images/logo.png';
+import tinycolor from 'tinycolor2';
 
 function ExportPalette({ name, colors }) {
   return (
@@ -16,7 +16,7 @@ function ExportPalette({ name, colors }) {
             <ColorCard
               key={color}
               color={color}
-              textColor={tinycolor(color).isDark() ? "#fff" : "#141414"}
+              textColor={tinycolor(color).isDark() ? '#fff' : '#141414'}
             >
               <h1>{color}</h1>
             </ColorCard>

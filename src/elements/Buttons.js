@@ -1,10 +1,10 @@
-import styled from "@emotion/styled";
-import { css } from "@emotion/core";
+import styled from '@emotion/styled';
+import { css } from '@emotion/core';
 
-//mixins
-import { white, primary, black, secondary, gray, link } from "../utils";
+// mixins
+import { white, primary, black, secondary, gray, link } from '../utils';
 
-//home
+// home
 export const HeroButton = styled.button`
   background: ${primary};
   background-image: linear-gradient(90deg, #5120a9 20%, #ff0082 100%);
@@ -21,7 +21,7 @@ export const HeroButton = styled.button`
   }
 `;
 
-//singin buttons
+// singin buttons
 const button = css`
   width: 100%;
   height: 60px;
@@ -56,7 +56,7 @@ export const GoogleSignInButton = styled.button`
   }
 `;
 
-//header
+// header
 const headerButton = css`
   border: none;
   outline: none;

@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { db, firebase } from "../firebase";
+import { useState, useEffect } from 'react';
+import { db, firebase } from '../firebase';
 
 export default function useAuth() {
   const [userRequest, setUserRequest] = useState({
     loading: true,
-    user: useState(JSON.parse(localStorage.getItem("user")))
+    user: useState(JSON.parse(localStorage.getItem('user'))),
   });
 
   useEffect(() => {
@@ -14,20 +14,20 @@ export default function useAuth() {
           displayName: appUser.displayName,
           photoURL: appUser.photoURL,
           uid: appUser.uid,
-          email: appUser.email
+          email: appUser.email,
         };
-        localStorage.setItem("user", JSON.stringify(user));
+        localStorage.setItem('user', JSON.stringify(user));
         setUserRequest({
           loading: false,
-          user: user
+          user,
         });
-        db.collection("users")
+        db.collection('users')
           .doc(user.uid)
           .set(user, { merge: true });
       } else {
-        localStorage.removeItem("user");
+        localStorage.removeItem('user');
         setUserRequest({
-          user: null
+          user: null,
         });
       }
     });
