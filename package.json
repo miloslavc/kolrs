@@ -52,7 +52,8 @@
   },
   "husky": {
     "hooks": {
-      "post-merge": "yarn install"
+      "post-merge": "yarn install",
+      "prepare-commit-msg": "exec < /dev/tty && npx git cz --hook || true"
     }
   },
   "config": {
