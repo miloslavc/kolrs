@@ -7,7 +7,7 @@
     "@emotion/styled": "^10.0.23",
     "@reach/router": "^1.2.1",
     "dotenv": "^8.2.0",
-    "firebase": "^7.5.0",
+    "firebase": "^7.5.2",
     "firebase-cli": "^1.2.0",
     "firebase-tools": "^7.9.0",
     "global": "^4.4.0",
