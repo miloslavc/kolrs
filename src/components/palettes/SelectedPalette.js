@@ -50,7 +50,6 @@ function SelectedPalette({ paletteId }) {
   // export palettes as png image
   const handlePNG = () => {
     setExportImage(true);
-    console.log('click');
   };
 
   // issue with loading module - to be fixed
