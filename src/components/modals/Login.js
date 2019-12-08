@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { firebase } from '../../firebase';
@@ -73,11 +71,15 @@ function Login({ handleSignUp, handleLogin }) {
             <LoginButton type="submit">Sign in</LoginButton>
           </FormStyled>
           <TextButton>
-            <span onClick={handleResetToggle}>Forgot password?</span>
+            <span role="button" tabIndex="0" onClick={handleResetToggle}>
+              Forgot password?
+            </span>
           </TextButton>
           <TextButton>
             <p>No account?</p>
-            <span onClick={handleSignUp}>Create account</span>
+            <span role="button" tabIndex="0" onClick={handleSignUp}>
+              Create account
+            </span>
           </TextButton>
         </Modal>
       )}

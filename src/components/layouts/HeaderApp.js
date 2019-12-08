@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useRef, useEffect } from 'react';
 import styled from '@emotion/styled';
 
@@ -44,7 +42,7 @@ function HeaderApp() {
       <nav ref={node}>
         <Logo color={white} />
         <Avatar />
-        <span onClick={handleClick}>
+        <span role="button" tabIndex="0" onClick={handleClick}>
           <MenuIcon />
         </span>
         {showMenu && <Menu />}

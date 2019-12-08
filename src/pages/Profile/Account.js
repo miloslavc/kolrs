@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
 /* eslint-disable func-names */
-/* eslint-disable jsx-a11y/label-has-for */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useContext } from 'react';
 import styled from '@emotion/styled';
 import Avatar from 'components/user/Avatar';
@@ -47,12 +45,15 @@ function Account() {
         </AvatarWrapper>
         <Heading>Account Info</Heading>
         <Form>
-          <label>Email</label>
-          <input
-            type="text"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
+          <label htmlFor="user-email">
+            Email
+            <input
+              type="text"
+              id="user-email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+          </label>
           <Button onClick={() => console.log(email)}>Update</Button>
         </Form>
         <Heading>Delete Account</Heading>

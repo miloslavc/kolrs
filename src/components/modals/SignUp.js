@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { firebase } from '../../firebase';
@@ -65,7 +63,9 @@ function SignUp({ handleSignUp, handleLogin }) {
 
         <TextButton>
           <p>Already have an account?</p>
-          <span onClick={handleLogin}>Log in</span>
+          <span role="button" tabIndex="0" onClick={handleLogin}>
+            Log in
+          </span>
         </TextButton>
       </Modal>
       <ModalBG onClick={handleSignUp} />

@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import { firebase } from '../../firebase';
@@ -44,7 +42,9 @@ function ResetPassword({ handleResetToggle }) {
         />
         <ButtonWrapper>
           <TextButton>
-            <span onClick={handleResetToggle}>Just kidding, I remembered</span>
+            <span role="button" tabIndex="0" onClick={handleResetToggle}>
+              Just kidding, I remembered
+            </span>
           </TextButton>
           <LoginButton type="submit">Reset Password</LoginButton>
         </ButtonWrapper>

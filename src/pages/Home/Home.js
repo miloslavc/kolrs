@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState } from 'react';
 import styled from '@emotion/styled';
 
@@ -45,7 +44,9 @@ function Home() {
           <HeroButton onClick={handleSignUp}>Try Kolrs for free</HeroButton>
         </HeroText>
         <VideoContent>
-          <video src={KolrsVideo} preload="auto" autoPlay="" muted="" loop="" />
+          <video src={KolrsVideo} preload="auto" autoPlay="" muted="" loop="">
+            <track kind="captions" />
+          </video>
         </VideoContent>
       </Content>
       <Footer />
