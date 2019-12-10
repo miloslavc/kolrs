@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import logo from 'assets/images/logo.png';
 import tinycolor from 'tinycolor2';
+import logo from '../assets/images/logo.png';
 
 function ExportPalette({ name, colors }) {
   return (

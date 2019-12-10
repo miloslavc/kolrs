@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { Link } from '@reach/router';
 
 // assets
-import logo from 'assets/images/logo.png';
+import logo from '../assets/images/logo.png';
 
 export function Logo({ color }) {
   return (
