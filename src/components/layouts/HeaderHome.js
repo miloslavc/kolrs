@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 
 // assets
-import { white } from 'utils';
+import { white } from '../../utils';
 import { Logo, SignIn, SignUp } from '../../elements';
 
 function HeaderHome({ signUp, login }) {

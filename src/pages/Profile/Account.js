@@ -2,9 +2,9 @@
 /* eslint-disable func-names */
 import React, { useState, useContext } from 'react';
 import styled from '@emotion/styled';
-import Avatar from 'components/user/Avatar';
 import { Redirect } from '@reach/router';
-import Footer from 'components/layouts/Footer';
+import Avatar from '../../components/user/Avatar';
+import Footer from '../../components/layouts/Footer';
 import { firebase } from '../../firebase';
 import { UserContext } from '../../context/UserContext';
 
