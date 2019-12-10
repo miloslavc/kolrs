@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { isMobile } from 'react-device-detect';
 
 // layouts
+import ReactPlayer from 'react-player';
 import HeaderHome from '../../components/layouts/HeaderHome';
 import Footer from '../../components/layouts/Footer';
 
@@ -11,8 +13,8 @@ import SignUp from '../../components/modals/SignUp';
 
 // assets
 import { HeroButton } from '../../elements';
-import KolrsVideo from '../../assets/video/Kolrs.mp4';
 import { white, mq } from '../../utils';
+import { VIDEO_VIMEO } from '../../constants/video';
 
 function Home() {
   const [toggleSignUp, setToggleSignUp] = useState(false);
@@ -43,10 +45,29 @@ function Home() {
           <p>Create, collect, and organize colors all in one place.</p>
           <HeroButton onClick={handleSignUp}>Try Kolrs for free</HeroButton>
         </HeroText>
-        <VideoContent>
-          <video src={KolrsVideo} preload="auto" autoPlay="" muted="" loop="">
-            <track kind="captions" />
-          </video>
+        <VideoContent isMobile={isMobile}>
+          <ReactPlayer
+            url={VIDEO_VIMEO}
+            config={{
+              vimeo: {
+                playerOptions: {
+                  title: false,
+                  autopause: false,
+                  byline: false,
+                  portrait: false,
+                  controls: false,
+                  dnt: true,
+                },
+                preload: true,
+              },
+            }}
+            loop
+            muted
+            playing={!isMobile}
+            height={isMobile ? '100%' : '800px'}
+            width="100%"
+            controls={!isMobile}
+          />
         </VideoContent>
       </Content>
       <Footer />
@@ -68,7 +89,7 @@ const Content = styled.main`
   margin: 0 auto;
   max-width: 90%;
   align-items: center;
-  grid-auto-rows: 70vh 1fr;
+  grid-auto-rows: 70vh auto;
   grid-gap: 1em;
 
   ${mq[1]} {
@@ -76,7 +97,6 @@ const Content = styled.main`
   }
 
   ${mq[2]} {
-    grid-gap: 2em;
     max-width: 80rem;
   }
 `;
@@ -116,13 +136,7 @@ const HeroText = styled.div`
 
 const VideoContent = styled.div`
   width: 100%;
-  pointer-events: none;
+  pointer-events: ${props => !props.isMobile && 'none'};
   display: grid;
   place-items: center;
-  padding: 3rem;
-
-  video {
-    max-width: 100%;
-    border-radius: 0.5rem;
-  }
 `;
