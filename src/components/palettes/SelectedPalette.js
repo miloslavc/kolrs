@@ -1,6 +1,6 @@
 /* eslint-disable func-names */
 import React, { useState, useEffect, useContext } from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import html2canvas from 'html2canvas';
 import { UserContext } from '../../context/UserContext';
 

@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-// import { css } from "@emotion/core";
+import styled from 'styled-components';
+// import { css } from "styled-components";
 
 export const CardH1 = styled.h1`
   font-size: 2.125em;

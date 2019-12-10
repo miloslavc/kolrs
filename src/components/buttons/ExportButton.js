@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import { FiShare2, FiTerminal, FiImage } from 'react-icons/fi';
 import { downloadSCSS } from '../../helpers/helpers';
 

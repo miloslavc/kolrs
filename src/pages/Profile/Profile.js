@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import { Router } from '@reach/router';
 import { UserContext } from '../../context/UserContext';
 

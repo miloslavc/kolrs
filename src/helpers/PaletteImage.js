@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
 import logo from '../assets/images/logo.png';
 

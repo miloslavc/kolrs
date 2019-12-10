@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import tinycolor from 'tinycolor2';
 import { FiPlus } from 'react-icons/fi';
 import { db, firebase } from '../../firebase';

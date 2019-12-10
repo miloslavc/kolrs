@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable func-names */
 import React, { useState, useContext } from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import { Redirect } from '@reach/router';
 import Avatar from '../../components/user/Avatar';
 import Footer from '../../components/layouts/Footer';

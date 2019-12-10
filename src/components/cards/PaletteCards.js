@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import { Link } from '@reach/router';
 import tinycolor from 'tinycolor2';
 import { UserContext } from '../../context/UserContext';

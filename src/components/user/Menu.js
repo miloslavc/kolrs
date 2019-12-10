@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import { Redirect, Link } from '@reach/router';
 import { firebase } from '../../firebase';
 

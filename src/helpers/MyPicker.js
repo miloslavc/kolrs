@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 import React from 'react';
 import { CustomPicker } from 'react-color';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import {
   EditableInput,
   Hue,

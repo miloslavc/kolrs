@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import robot from '../../assets/icons/robot35x35.svg';
 import { UserContext } from '../../context/UserContext';
 
