@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 // layouts
 import HeaderHome from '../../components/layouts/HeaderHome';

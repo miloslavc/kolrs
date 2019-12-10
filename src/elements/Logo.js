@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import React from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import { Link } from '@reach/router';
 
 // assets

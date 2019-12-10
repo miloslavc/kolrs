@@ -1,6 +1,6 @@
 import React from 'react';
 import Lottie from 'react-lottie';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import data from './images/data.json';
 
 import { black } from '../utils';

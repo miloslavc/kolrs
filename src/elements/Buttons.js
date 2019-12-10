@@ -1,5 +1,4 @@
-import styled from '@emotion/styled';
-import { css } from '@emotion/core';
+import styled, { css } from 'styled-components';
 
 // mixins
 import { white, primary, black, secondary, gray, link } from '../utils';

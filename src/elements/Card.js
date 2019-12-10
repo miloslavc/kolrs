@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 // assets
 import { CardShadow } from '../utils';

@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import { Redirect } from '@reach/router';
 import { capitalizeFirstLetter } from '../../helpers/helpers';
 
