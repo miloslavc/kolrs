@@ -5,7 +5,7 @@
   "dependencies": {
     "@reach/router": "^1.2.1",
     "dotenv": "^8.2.0",
-    "firebase": "^7.7.0",
+    "firebase": "^7.11.0",
     "firebase-cli": "^1.2.0",
     "firebase-tools": "^7.12.1",
     "global": "^4.4.0",
