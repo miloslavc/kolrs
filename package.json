@@ -52,7 +52,7 @@
   "devDependencies": {
     "commitizen": "^4.0.3",
     "cz-emoji": "^1.2.1",
-    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-airbnb": "^18.1.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
